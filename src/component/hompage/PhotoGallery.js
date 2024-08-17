@@ -164,7 +164,7 @@ const Gallery = () => {
     <GallerySection>
       <GalleryContainer>
         <GalleryTitle>
-          <ImageIcon size={24} color="#8B4513" style={{ marginRight: '0.5rem' }} />
+          <ImageIcon size={24} color="#ff6b6b" style={{ marginRight: '0.5rem' }} />
           Gallery
         </GalleryTitle>
         <GalleryGrid>

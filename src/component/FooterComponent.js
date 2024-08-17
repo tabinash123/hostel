@@ -15,7 +15,6 @@ const FooterSection = styled.footer`
   padding: 50px 20px 30px;
   font-family: 'Arial', sans-serif;
   position: relative;
-  border-top: 3px solid #d4af37;
 
   &::before {
     content: '';
@@ -58,7 +57,7 @@ const Column = styled.div`
 const Title = styled.h3`
   font-size: 18px;
   margin-bottom: 15px;
-  color: #d4af37;
+  color: #ff6b6b;
 `;
 
 const LinkList = styled.ul`
@@ -93,7 +92,7 @@ const ContactItem = styled.p`
 
   svg {
     margin-right: 10px;
-    color: #d4af37;
+    color: #ff6b6b;
   }
 `;
 
@@ -108,7 +107,7 @@ const SocialLink = styled.a`
   transition: color 0.3s ease;
 
   &:hover {
-    color: #d4af37;
+    color: #ff6b6b;
   }
 `;
 
@@ -127,7 +126,7 @@ const NewsletterInput = styled.input`
 
 const NewsletterButton = styled.button`
   padding: 10px 15px;
-  background-color: #d4af37;
+  background-color: #ff6b6b;
   color: white;
   border: none;
   border-radius: 0 4px 4px 0;
@@ -153,7 +152,7 @@ const ScrollToTop = styled.button`
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #d4af37;
+  background-color: #ff6b6b;
   color: white;
   border: none;
   border-radius: 50%;

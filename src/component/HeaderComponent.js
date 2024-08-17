@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
-import { Phone, User, Menu, X } from 'lucide-react';
+import { Phone, User, Menu, X, Home, BedDouble, Mail, Info, Calendar } from 'lucide-react';
 
 const HeaderWrapper = styled.header`
   font-family: Arial, sans-serif;
@@ -17,6 +17,7 @@ const TopBar = styled.div`
   font-size: 14px;
 
   @media (max-width: 768px) {
+  display: none;
     flex-direction: column;
     align-items: flex-start;
   }
@@ -52,6 +53,7 @@ const SubHeader = styled.div`
   font-size: 14px;
 
   @media (max-width: 768px) {
+  display: none;
     flex-direction: column;
     align-items: flex-start;
   }
@@ -91,8 +93,9 @@ const MainHeader = styled.div`
   padding: 10px 20px;
   background-color: #ffffff;
 
-  @media (max-width: 1024px) {
-    flex-wrap: wrap;
+  @media (max-width: 768px) {
+    // flex-wrap: wrap;
+  padding: 10px 10px;
   }
 `;
 
@@ -118,9 +121,7 @@ const Nav = styled.nav`
   }
 
   @media (max-width: 768px) {
-    display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
-    flex-direction: column;
-    width: 100%;
+    display: none;
   }
 `;
 
@@ -162,8 +163,114 @@ const MenuButton = styled.button`
   }
 `;
 
+const Drawer = styled.div`
+  position: fixed;
+  top: 0;
+  right: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
+  width: 280px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+`;
+
+const DrawerHeader = styled.div`
+  padding: 20px;
+  background-color: #f0ece3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const DrawerLogo = styled.div`
+  font-size: 18px;
+  font-weight: bold;
+  color: #000000;
+`;
+
+const DrawerNav = styled.nav`
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+`;
+
+const DrawerNavItem = styled(NavLink)`
+  text-decoration: none;
+  color: #000000;
+  font-weight: normal;
+  font-size: 16px;
+  padding: 15px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  
+  &:hover, &.active {
+    background-color: #f9f9f9;
+    font-weight: bold;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+const CloseButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000000;
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+  visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  z-index: 999;
+`;
+
+const DrawerFooter = styled.div`
+  padding: 20px;
+  background-color: #f0ece3;
+  margin-top: auto;
+`;
+
+const DrawerContact = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+`;
+
 const Header = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+
+  useEffect(() => {
+    if (isDrawerOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isDrawerOpen]);
 
   return (
     <HeaderWrapper>
@@ -186,16 +293,47 @@ const Header = () => {
       </SubHeader>
       <MainHeader>
         <MainLogo to="/">Creative Genius Hostel</MainLogo>
-        <MenuButton onClick={() => setIsNavOpen(!isNavOpen)}>
-          {isNavOpen ? <X size={24} /> : <Menu size={24} />}
+        <MenuButton onClick={toggleDrawer}>
+          <Menu size={24} />
         </MenuButton>
-        <Nav isOpen={isNavOpen}>
+        <Nav>
+          <NavItem to="/">Home</NavItem>
           <NavItem to="/room">Rooms & Facilities</NavItem>
           <NavItem to="/contact">Contact</NavItem>
           <NavItem to="/about">About-Us</NavItem>
         </Nav>
-        <BookVisitButton to="/book-tour">Book Hostel Tour</BookVisitButton>
       </MainHeader>
+      <Overlay isOpen={isDrawerOpen} onClick={toggleDrawer} />
+      <Drawer isOpen={isDrawerOpen}>
+        <DrawerHeader>
+          <DrawerLogo>Creative Genius Hostel</DrawerLogo>
+          <CloseButton onClick={toggleDrawer}>
+            <X size={24} />
+          </CloseButton>
+        </DrawerHeader>
+        <DrawerNav>
+          <DrawerNavItem to="/" onClick={toggleDrawer}>
+            <Home size={18} /> Home
+          </DrawerNavItem>
+          <DrawerNavItem to="/room" onClick={toggleDrawer}>
+            <BedDouble size={18} /> Rooms & Facilities
+          </DrawerNavItem>
+          <DrawerNavItem to="/contact" onClick={toggleDrawer}>
+            <Mail size={18} /> Contact
+          </DrawerNavItem>
+          <DrawerNavItem to="/about" onClick={toggleDrawer}>
+            <Info size={18} /> About-Us
+          </DrawerNavItem>
+         
+        </DrawerNav>
+        <DrawerFooter>
+          <DrawerContact>
+            <Phone size={14} />
+            <span>+977 1234567890</span>
+          </DrawerContact>
+          <CalculateButton to="/calculate-fees" onClick={toggleDrawer}>Calculate Hostel Fees</CalculateButton>
+        </DrawerFooter>
+      </Drawer>
     </HeaderWrapper>
   );
 };

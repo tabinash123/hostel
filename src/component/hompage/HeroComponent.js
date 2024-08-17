@@ -5,14 +5,15 @@ import imag from '../../assets/resort/hostel.jpg'
 
 const HeroSection = styled.section`
   position: relative;
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   background-image: url('${imag}');
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
-  padding: 0 5%;
+  // padding: 0 5%;
+  
   color: white;
   overflow: hidden;
 `;
@@ -35,6 +36,7 @@ const Content = styled.div`
   position: relative;
   z-index: 2;
   max-width: 50%;
+  margin-left:5%;
 `;
 
 const Title = styled.h1`

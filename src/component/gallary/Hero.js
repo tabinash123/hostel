@@ -9,7 +9,7 @@ const fadeIn = keyframes`
 
 const HeroSection = styled.section`
   position: relative;
-  height: 90vh;
+  height: 60vh;
   background-image: url(${ima});
   background-size: cover;
   background-position: center;
@@ -34,7 +34,6 @@ const HeroSection = styled.section`
   @media (max-width: 767px) {
     background-size: cover;
     background-position: center;
-      height: 80vh;
 
   }
 

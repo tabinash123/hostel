@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import imag from '../../assets/resort/hotel4.jpg'
 const PageWrapper = styled.div`
-  background-color: #fff5f5;
+  background-color: #ffffff;
   min-height: 100vh;
   padding: 60px 20px;
 `;

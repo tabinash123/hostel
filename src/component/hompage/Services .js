@@ -20,7 +20,7 @@ const Title = styled.h2`
 const Subtitle = styled.p`
   font-size: clamp(1rem, 2vw, 1.25rem);
   text-align: center;
-  color: #666;
+  color: #ff6b6b;
   margin-bottom: 40px;
   max-width: 800px;
   margin-left: auto;

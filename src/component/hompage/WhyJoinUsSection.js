@@ -144,10 +144,7 @@ const CTAComponent = () => {
           Experience a supportive and empowering living environment designed for ambitious young women. 
           Take the first step towards your bright future by applying now or scheduling a visit to our hostel.
         </Subtitle>
-        <ButtonContainer>
-          <PrimaryButton href="/apply">Apply Now</PrimaryButton>
-          <SecondaryButton href="/contact">Schedule a Visit</SecondaryButton>
-        </ButtonContainer>
+
       </Content>
       <WaveBottom />
       <Decoration style={{ top: '10%', left: '5%', width: '30px', height: '30px' }} />
