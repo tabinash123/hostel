@@ -90,7 +90,7 @@ const MainHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 25px 20px;
   background-color: #ffffff;
 
   @media (max-width: 768px) {
@@ -277,22 +277,16 @@ const Header = () => {
       <TopBar>
         <PhoneNumber>
           <Phone size={14} />
-          <span>+977 1234567890</span>
+          <span>+977 01-4541165</span>
         </PhoneNumber>
         <TopBarRight>
-          <Logo>Creative</Logo>
-          <Logo>GIRLS HOSTEL</Logo>
+          <Logo>Rise Institute For Medical Education</Logo>
+          
         </TopBarRight>
       </TopBar>
-      {/* <SubHeader>
-        <CalculateButton to="/calculate-fees">Calculate Hostel Fees</CalculateButton>
-        <FindAdvisor to="/find-advisor">
-          <User size={14} />
-          Find Admission Advisor
-        </FindAdvisor>
-      </SubHeader> */}
+
       <MainHeader>
-        <MainLogo to="/">Creative Genius Hostel</MainLogo>
+        <MainLogo to="/">Rise Institute For Medical Education</MainLogo>
         <MenuButton onClick={toggleDrawer}>
           <Menu size={24} />
         </MenuButton>

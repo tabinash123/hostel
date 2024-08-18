@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Wifi, Book, Maximize, Users, Mountain, Fan, Tv, Lock } from 'lucide-react';
 
 import img1 from "../../assets/rooms/1.jpg";
@@ -9,70 +9,81 @@ import img4 from "../../assets/rooms/1.jpg";
 import img5 from "../../assets/rooms/5.jpg";
 import img6 from "../../assets/rooms/2.jpg";
 
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
 const Section = styled.section`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 50px 20px;
+  padding: 40px 0px;
   background-color: #f8f9fa;
+  font-family: 'Roboto', sans-serif;
+  animation: ${fadeIn} 0.8s ease-out;
 
-  @media (min-width: 768px) {
-    padding: 75px 20px;
+  @media (max-width: 1024px) {
+    padding: 100px 20px;
   }
 
-  @media (min-width: 1024px) {
-    padding: 100px 20px;
+  @media (max-width: 768px) {
+    padding: 20px 20px;
   }
 `;
 
 const Title = styled.h2`
-  font-size: 2rem;
+  font-size: 3rem;
   color: #2c3e50;
   text-align: center;
   margin-bottom: 20px;
   font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
 
-  @media (min-width: 768px) {
-    font-size: 2.4rem;
+  @media (max-width: 1024px) {
+    font-size: 3.5rem;
+  }
+  @media (max-width: 768px) {
+    font-size: 2rem;
   }
 
-  @media (min-width: 1024px) {
-    font-size: 2.8rem;
-  }
 `;
 
 const Subtitle = styled.p`
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #ff6b6b;
   text-align: center;
-  margin-bottom: 30px;
-  max-width: 600px;
+  margin-bottom: 40px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.6;
+  font-weight: 300;
 
   @media (min-width: 768px) {
-    font-size: 1.1rem;
-    margin-bottom: 40px;
+    font-size: 1.2rem;
+    margin-bottom: 50px;
   }
 
   @media (min-width: 1024px) {
-    font-size: 1.2rem;
-    margin-bottom: 50px;
+    font-size: 1.3rem;
+    margin-bottom: 60px;
   }
 `;
 
 const RoomsGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 30px;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+    gap: 35px;
   }
 
   @media (min-width: 1024px) {
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 40px;
   }
 `;
 
@@ -80,48 +91,49 @@ const RoomCard = styled.div`
   background-color: #ffffff;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: all 0.3 ease;
   display: flex;
   flex-direction: column;
 
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-  }
+
 `;
 
 const RoomImage = styled.img`
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
+  transition: transform 0.3s ease;
+
+
 `;
 
 const RoomInfo = styled.div`
-  padding: 20px;
+  padding: 25px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 `;
 
 const RoomName = styled.h3`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: #34495e;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  line-height: 1.3;
 
   @media (min-width: 768px) {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 
   @media (min-width: 1024px) {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 `;
 
 const RoomDescription = styled.p`
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #7f8c8d;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   line-height: 1.6;
   flex-grow: 1;
 `;
@@ -129,59 +141,68 @@ const RoomDescription = styled.p`
 const RoomFeatures = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 15px;
+  gap: 12px;
+  margin-bottom: 20px;
 `;
 
 const Feature = styled.div`
   display: flex;
   align-items: center;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #34495e;
   background-color: #f0f3f5;
-  padding: 5px 10px;
+  padding: 6px 12px;
   border-radius: 20px;
+  transition: background-color 0.3s ease;
 
   svg {
-    margin-right: 5px;
+    margin-right: 6px;
+  }
+
+  &:hover {
+    background-color: #e0e5e9;
   }
 
   @media (min-width: 768px) {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 `;
 
 const RoomPrice = styled.div`
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #ff6b6b;
   font-weight: 600;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 
   @media (min-width: 768px) {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 12px;
 `;
 
 const Button = styled.button`
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   background-color: ${props => props.primary ? '#ff6b6b' : 'transparent'};
-  color: ${props => props.primary ? '#ffffff' : '#000000'};
+  color: ${props => props.primary ? '#ffffff' : '#ff6b6b'};
   border: ${props => props.primary ? 'none' : '2px solid #ff6b6b'};
-  border-radius: 5px;
-  font-size: 0.9rem;
+  border-radius: 8px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
 
+  &:hover {
+    background-color: ${props => props.primary ? '#ff8787' : '#fff0f0'};
+  }
+
   @media (min-width: 768px) {
-    padding: 12px;
-    font-size: 1rem;
+    padding: 14px;
+    font-size: 1.1rem;
   }
 `;
 
@@ -367,7 +388,7 @@ const RoomsSection = () => {
 
   return (
     <Section>
-      <Title>Our Accommodation Options</Title>
+      <Title>Our Accommodation </Title>
       <Subtitle>Discover comfortable and secure living spaces designed for the modern Nepali student.</Subtitle>
       <RoomsGrid>
         {rooms.map((room, index) => (

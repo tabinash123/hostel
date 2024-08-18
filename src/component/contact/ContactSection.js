@@ -206,20 +206,20 @@ const ContactPage = () => {
             <InfoTitle>Contact Information</InfoTitle>
             <InfoItem>
               <InfoIcon><MapPin size={24} /></InfoIcon>
-              <InfoText>123 Hostel Street, Kathmandu, Nepal</InfoText>
+              <InfoText>Kamalpokhari, Kathmandu, Nepal</InfoText>
             </InfoItem>
             <InfoItem>
               <InfoIcon><Phone size={24} /></InfoIcon>
-              <InfoText>+977 1234567890</InfoText>
+              <InfoText>+977 01-4541165</InfoText>
             </InfoItem>
             <InfoItem>
               <InfoIcon><Mail size={24} /></InfoIcon>
-              <InfoText>info@sarbodagirlshostel.com</InfoText>
+              <InfoText>risedoctors@gmail.com</InfoText>
             </InfoItem>
             <InfoItem>
               <InfoIcon><Clock size={24} /></InfoIcon>
               <InfoText>
-                Office Hours: Monday - Friday<br />
+                Office Hours: Sunday - Friday<br />
                 9:00 AM - 5:00 PM
               </InfoText>
             </InfoItem>

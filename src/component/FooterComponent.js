@@ -189,12 +189,10 @@ const Footer = () => {
         <Column>
           <Title>Quick Links</Title>
           <LinkList>
-            <LinkItem><Link href="#">Home</Link></LinkItem>
-            <LinkItem><Link href="#">About Us</Link></LinkItem>
-            <LinkItem><Link href="#">Our Rooms</Link></LinkItem>
-            <LinkItem><Link href="#">Facilities</Link></LinkItem>
-            <LinkItem><Link href="#">Apply Now</Link></LinkItem>
-            <LinkItem><Link href="#">Contact</Link></LinkItem>
+            <LinkItem><Link href="/">Home</Link></LinkItem>
+            <LinkItem><Link href="/about">About Us</Link></LinkItem>
+            <LinkItem><Link href="/room">Our Rooms</Link></LinkItem>
+            <LinkItem><Link href="contact">Contact</Link></LinkItem>
           </LinkList>
         </Column>
         <Column>
@@ -202,21 +200,19 @@ const Footer = () => {
           <ContactInfo>
             <ContactItem>
               <MapPin size={16} />
-              123 Hostel Street, Kathmandu, Nepal
+              Kamalpokhari, Kathmandu, Nepal
             </ContactItem>
             <ContactItem>
               <Phone size={16} />
-              +977 1234567890
+             +977 01-4541165
             </ContactItem>
             <ContactItem>
               <Mail size={16} />
-              info@sarbodagirlshostel.com
+            risedoctors@gmail.com
             </ContactItem>
           </ContactInfo>
           <SocialLinks>
-            <SocialLink href="#" aria-label="Facebook"><Facebook size={20} /></SocialLink>
-            <SocialLink href="#" aria-label="Instagram"><Instagram size={20} /></SocialLink>
-            <SocialLink href="#" aria-label="LinkedIn"><Linkedin size={20} /></SocialLink>
+            <SocialLink href="https://www.facebook.com/rise.edu.np" aria-label="Facebook"><Facebook size={20} /></SocialLink>
           </SocialLinks>
         </Column>
         <Column>
@@ -237,7 +233,7 @@ const Footer = () => {
         </Column>
       </Content>
       <Copyright>
-        Copyright © {new Date().getFullYear()} Sarboda Girls Hostel. All rights reserved.
+        Copyright © {new Date().getFullYear()} Rise Institute For Medical Education. All rights reserved.
       </Copyright>
       <ScrollToTop onClick={scrollToTop}>
         <ChevronUp size={20} />

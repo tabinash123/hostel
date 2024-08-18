@@ -119,12 +119,9 @@ const Hero = () => {
     <HeroSection>
       <Overlay />
       <Content>
-        <Title>Empower Your Education at <Highlight>Creative Genius Girls Hostel</Highlight></Title>
+        <Title>Empower Your Education at <Highlight>Rise Institute For Medical Education</Highlight></Title>
         <Subtitle>Experience a nurturing environment that fosters academic excellence and personal growth in the heart of Kathmandu.</Subtitle>
-        <ButtonGroup>
-          <Button>Schedule A Visit</Button>
-          <Button>Explore Facilities</Button>
-        </ButtonGroup>
+
         <Stats>
           <StatItem>
             <StatValue>10+</StatValue>
