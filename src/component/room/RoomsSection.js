@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Wifi, Coffee, Maximize, Users, Mountain, Wind, Tv, Lock } from 'lucide-react';
+import { Wifi, Book, Maximize, Users, Mountain, Fan, Tv, Lock } from 'lucide-react';
 
 import img1 from "../../assets/rooms/1.jpg";
 import img2 from "../../assets/rooms/2.jpg";
@@ -196,22 +196,43 @@ const Modal = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 20px;
+   @media (max-width: 728px) {
+    max-width: 350px;
+  }
 `;
 
 const ModalContent = styled.div`
   background-color: white;
   padding: 20px;
   border-radius: 15px;
-  width: 90%;
-  max-width: 400px;
-  max-height: 80vh;
+  width: 100%;
+  max-width: 90%;
+  max-height: 90vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   position: relative;
 
-  @media (min-width: 768px) {
-    max-width: 600px;
+  // @media (min-width: 576px) {
+    max-width: 400px;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 800px;
+    flex-direction: row;
+    max-height: 80vh;
+  }
+`;
+
+const ModalImageContainer = styled.div`
+  width: 100%;
+  margin-bottom: 20px;
+
+  @media (min-width: 992px) {
+    width: 50%;
+    margin-bottom: 0;
+    margin-right: 20px;
   }
 `;
 
@@ -220,13 +241,33 @@ const ModalImage = styled.img`
   height: 200px;
   object-fit: cover;
   border-radius: 10px;
-  margin-bottom: 15px;
+
+  @media (min-width: 576px) {
+    height: 250px;
+  }
+
+  @media (min-width: 992px) {
+    height: 100%;
+  }
+`;
+
+const ModalInfo = styled.div`
+  width: 100%;
+
+  @media (min-width: 992px) {
+    width: 50%;
+    overflow-y: auto;
+  }
 `;
 
 const ModalTitle = styled.h2`
   font-size: 1.5rem;
   color: #2c3e50;
   margin-bottom: 10px;
+
+  @media (min-width: 576px) {
+    font-size: 1.8rem;
+  }
 `;
 
 const ModalDescription = styled.p`
@@ -234,7 +275,12 @@ const ModalDescription = styled.p`
   color: #7f8c8d;
   margin-bottom: 15px;
   line-height: 1.4;
+
+  @media (min-width: 576px) {
+    font-size: 1rem;
+  }
 `;
+
 
 const ModalFeatures = styled.div`
   display: flex;
@@ -270,59 +316,59 @@ const RoomsSection = () => {
 
   const rooms = [
     {
-      name: "Jungle View Deluxe",
+      name: "Standard Twin Share",
       image: img1,
-      description: "Spacious room with a private balcony overlooking the lush jungle. Perfect for wildlife enthusiasts.",
-      features: { wifi: true, size: "35 m²", capacity: 2, view: "Jungle", ac: true, tv: true, safe: true },
-      price: "$150 per night",
-      amenities: "King-size bed, En-suite bathroom, Private balcony, Mini-bar, Coffee maker"
+      description: "Comfortable room with two single beds, perfect for sharing with a roommate.",
+      features: { wifi: true, capacity: 2,  fan: true, tv: false, safe: true },
+      price: "NPR 8,000 per month",
+      amenities: "Two single beds, Study desks, Wardrobes, Shared bathroom"
     },
     {
-      name: "Riverside Suite",
+      name: "Deluxe Single",
       image: img2,
-      description: "Luxurious suite with panoramic views of the Rapti River. Ideal for a romantic getaway.",
-      features: { wifi: true, size: "50 m²", capacity: 2, view: "River", ac: true, tv: true, safe: true },
-      price: "$250 per night",
-      amenities: "King-size bed, Jacuzzi tub, Separate living area, Kitchenette, Private terrace"
+      description: "Spacious single room for students who prefer privacy and extra space.",
+      features: { wifi: true,  capacity: 1, fan: true, tv: false, safe: true },
+      price: "NPR 12,000 per month",
+      amenities: "Single bed, Large study desk, Wardrobe, En-suite bathroom"
     },
     {
-      name: "Family Cottage",
+      name: "Triple Share Economy",
       image: img3,
-      description: "Cozy cottage with multiple rooms, perfect for families or groups of friends.",
-      features: { wifi: true, size: "75 m²", capacity: 4, view: "Garden", ac: true, tv: true, safe: true },
-      price: "$300 per night",
-      amenities: "Two bedrooms, Full kitchen, Dining area, Private garden, BBQ facilities"
+      description: "Budget-friendly option with three beds, ideal for students looking to save on accommodation.",
+      features: { wifi: true,  capacity: 3, fan: true, tv: false, safe: true },
+      price: "NPR 6,000 per month",
+      amenities: "Three single beds, Study corners, Shared storage, Shared bathroom"
     },
     {
-      name: "Safari Lodge",
+      name: "Quad Share Suite",
       image: img4,
-      description: "Authentic lodge-style accommodation with rustic charm and modern amenities.",
-      features: { wifi: true, size: "40 m²", capacity: 3, view: "Savanna", ac: true, tv: true, safe: true },
-      price: "$180 per night",
-      amenities: "Queen-size bed, Bunk bed, Outdoor shower, Veranda, Binoculars provided"
+      description: "Large room for four, promoting a communal living experience with shared facilities.",
+      features: { wifi: true, capacity: 4,  fan: true, tv: true, safe: true },
+      price: "NPR 7,000 per month",
+      amenities: "Four single beds, Study area, Lounge space, Shared bathroom"
     },
     {
-      name: "Elephant View Room",
+      name: "Premium Single",
       image: img5,
-      description: "Unique room with views of the elephant bathing area. Experience wildlife up close.",
-      features: { wifi: true, size: "30 m²", capacity: 2, view: "Elephant area", ac: true, tv: true, safe: true },
-      price: "$200 per night",
-      amenities: "Queen-size bed, Floor-to-ceiling windows, Observation deck, Mini-fridge, Tea/coffee making facilities"
+      description: "Our most luxurious single room option with premium amenities and mountain views.",
+      features: { wifi: true, capacity: 1,  fan: true, tv: true, safe: true },
+      price: "NPR 15,000 per month",
+      amenities: "Double bed, Large study desk, Wardrobe, En-suite bathroom, Mini-fridge"
     },
     {
-      name: "Honeymoon Suite",
+      name: "Double Study Suite",
       image: img6,
-      description: "Romantic suite with a private jacuzzi and stunning views of the national park.",
-      features: { wifi: true, size: "60 m²", capacity: 2, view: "Park", ac: true, tv: true, safe: true },
-      price: "$350 per night",
-      amenities: "Four-poster king-size bed, Private jacuzzi, Champagne bar, Couples spa treatments, Candlelit dinner service"
+      description: "Designed for serious students, this room features extra study space and a quiet environment.",
+      features: { wifi: true,  capacity: 2,  fan: true, tv: false, safe: true },
+      price: "NPR 10,000 per month",
+      amenities: "Two single beds, Large study desks, Bookshelves, Shared bathroom, Reading lamps"
     }
   ];
 
   return (
     <Section>
-      <Title>Our Accommodations</Title>
-      <Subtitle>Experience the perfect blend of comfort and nature in our thoughtfully designed rooms and suites.</Subtitle>
+      <Title>Our Accommodation Options</Title>
+      <Subtitle>Discover comfortable and secure living spaces designed for the modern Nepali student.</Subtitle>
       <RoomsGrid>
         {rooms.map((room, index) => (
           <RoomCard key={index}>
@@ -332,14 +378,11 @@ const RoomsSection = () => {
               <RoomDescription>{room.description}</RoomDescription>
               <RoomFeatures>
                 <Feature><Wifi size={16} /> Wi-Fi</Feature>
-                <Feature><Maximize size={16} /> {room.features.size}</Feature>
-                <Feature><Users size={16} /> {room.features.capacity} Guests</Feature>
-                <Feature><Mountain size={16} /> {room.features.view} View</Feature>
+                <Feature><Users size={16} /> {room.features.capacity} {room.features.capacity > 1 ? 'Students' : 'Student'}</Feature>
               </RoomFeatures>
               <RoomPrice>{room.price}</RoomPrice>
               <ButtonGroup>
                 <Button onClick={() => setSelectedRoom(room)}>Quick View</Button>
-                <Button primary>Book Now</Button>
               </ButtonGroup>
             </RoomInfo>
           </RoomCard>
@@ -349,21 +392,23 @@ const RoomsSection = () => {
         <Modal onClick={() => setSelectedRoom(null)}>
           <ModalContent onClick={e => e.stopPropagation()}>
             <CloseButton onClick={() => setSelectedRoom(null)}>&times;</CloseButton>
-            <ModalImage src={selectedRoom.image} alt={selectedRoom.name} />
-            <ModalTitle>{selectedRoom.name}</ModalTitle>
-            <ModalDescription>{selectedRoom.description}</ModalDescription>
-            <ModalFeatures>
-              <ModalFeature><Wifi size={14} /> Wi-Fi</ModalFeature>
-              <ModalFeature><Maximize size={14} /> {selectedRoom.features.size}</ModalFeature>
-              <ModalFeature><Users size={14} /> {selectedRoom.features.capacity}</ModalFeature>
-              <ModalFeature><Mountain size={14} /> {selectedRoom.features.view}</ModalFeature>
-              <ModalFeature><Wind size={14} /> AC</ModalFeature>
-              <ModalFeature><Tv size={14} /> TV</ModalFeature>
-              <ModalFeature><Lock size={14} /> Safe</ModalFeature>
-            </ModalFeatures>
-            <ModalAmenities><strong>Amenities:</strong> {selectedRoom.amenities}</ModalAmenities>
-            <RoomPrice>{selectedRoom.price}</RoomPrice>
-            <Button primary style={{width: '100%'}}>Book Now</Button>
+            <ModalImageContainer>
+              <ModalImage src={selectedRoom.image} alt={selectedRoom.name} />
+            </ModalImageContainer>
+            <ModalInfo>
+              <ModalTitle>{selectedRoom.name}</ModalTitle>
+              <ModalDescription>{selectedRoom.description}</ModalDescription>
+              <ModalFeatures>
+                <ModalFeature><Wifi size={14} /> Wi-Fi</ModalFeature>
+                <ModalFeature><Users size={14} /> {selectedRoom.features.capacity} {selectedRoom.features.capacity > 1 ? 'Students' : 'Student'}</ModalFeature>
+                <ModalFeature><Fan size={14} /> Fan</ModalFeature>
+                {selectedRoom.features.tv && <ModalFeature><Tv size={14} /> TV</ModalFeature>}
+                <ModalFeature><Lock size={14} /> Safe</ModalFeature>
+                <ModalFeature><Book size={14} /> Study Area</ModalFeature>
+              </ModalFeatures>
+              <ModalAmenities><strong>Amenities:</strong> {selectedRoom.amenities}</ModalAmenities>
+              <RoomPrice>{selectedRoom.price}</RoomPrice>
+            </ModalInfo>
           </ModalContent>
         </Modal>
       )}

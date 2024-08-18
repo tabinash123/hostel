@@ -284,13 +284,13 @@ const Header = () => {
           <Logo>GIRLS HOSTEL</Logo>
         </TopBarRight>
       </TopBar>
-      <SubHeader>
+      {/* <SubHeader>
         <CalculateButton to="/calculate-fees">Calculate Hostel Fees</CalculateButton>
         <FindAdvisor to="/find-advisor">
           <User size={14} />
           Find Admission Advisor
         </FindAdvisor>
-      </SubHeader>
+      </SubHeader> */}
       <MainHeader>
         <MainLogo to="/">Creative Genius Hostel</MainLogo>
         <MenuButton onClick={toggleDrawer}>

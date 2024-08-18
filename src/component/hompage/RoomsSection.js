@@ -383,7 +383,6 @@ const RoomsSection = () => {
               <RoomPrice>{room.price}</RoomPrice>
               <ButtonGroup>
                 <Button onClick={() => setSelectedRoom(room)}>Quick View</Button>
-                <Button primary>Book Now</Button>
               </ButtonGroup>
             </RoomInfo>
           </RoomCard>
@@ -409,7 +408,6 @@ const RoomsSection = () => {
               </ModalFeatures>
               <ModalAmenities><strong>Amenities:</strong> {selectedRoom.amenities}</ModalAmenities>
               <RoomPrice>{selectedRoom.price}</RoomPrice>
-              <Button primary style={{width: '100%'}}>Book Now</Button>
             </ModalInfo>
           </ModalContent>
         </Modal>

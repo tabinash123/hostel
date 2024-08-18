@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import ima from '../../assets/resort/hotel1.jpg'
+import ima from '../../assets/resort/hostel.jpg'
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -44,7 +44,8 @@ const HeroSection = styled.section`
 
   /* Desktop styles */
   @media (min-width: 1024px) {
-    padding: 80px;
+    // padding: 80px;
+    margin-bottom:0px; 
   }
 `;
 

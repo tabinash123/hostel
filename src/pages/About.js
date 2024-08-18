@@ -24,7 +24,7 @@ const About = () => {
       {/* <TestimonialCarousel /> */}
       <TeamSection />
       <TestimonialComponent />
-      <Gallery />
+      {/* <Gallery /> */}
     </div>
   )
 }

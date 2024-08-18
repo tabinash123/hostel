@@ -1,195 +1,225 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Facebook, Twitter, Instagram } from 'lucide-react';
-
-// Import images
-import img1 from "../../assets/gallary/1.jpg";
-import img2 from "../../assets/gallary/2.jpg";
+import { Home, Book, Users, Shield } from 'lucide-react';
+import imga from '../../assets/gallary/5.jpg';
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 `;
 
-const SectionContainer = styled.section`
+const Section = styled.section`
+  display: flex;
+  justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 30px 15px;
-  background-color: #faf7f2;
-  font-family: 'Poppins', Arial, sans-serif;
-
-  @media (min-width: 768px) {
-    padding: 40px 20px;
-  }
-
-  @media (min-width: 1024px) {
-    padding: 60px 30px;
-  }
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #333;
-  margin-bottom: 10px;
-  text-align: center;
+  padding: 4rem 2rem;
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
   animation: ${fadeIn} 0.6s ease-out;
 
-  @media (min-width: 768px) {
-    font-size: 14px;
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    padding: 3rem 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
   }
 `;
 
-const MainTitle = styled.h1`
-  font-size: 28px;
-  color: #333;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: bold;
-  animation: ${fadeIn} 0.6s ease-out 0.2s both;
+const ContentArea = styled.div`
+  flex: 1;
+  padding-right: 3rem;
 
-  @media (min-width: 768px) {
-    font-size: 40px;
-    margin-bottom: 40px;
-  }
-
-  @media (min-width: 1024px) {
-    font-size: 48px;
+  @media (max-width: 1024px) {
+    padding-right: 0;
+    margin-bottom: 2rem;
   }
 `;
 
-const TeamGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 10px 0;
+const ImageArea = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  max-width: 1000px;
-  margin: 0 auto;
 
-  @media (min-width: 768px) {
-    gap: 25px;
-    padding: 15px 0;
+  @media (max-width: 1024px) {
+    width: 100%;
   }
 
-  @media (min-width: 1024px) {
-    gap: 30px;
-    padding: 20px 0;
+  @media (max-width: 800px) {
+    display: none;
   }
 `;
 
-const TeamMember = styled.div`
-  text-align: center;
-  background-color: #ffffff;
-  border-radius: 10px;
-  overflow: hidden;
+const SubTitle = styled.h3`
+  color: #FF6B52;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 
-
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
-const ImageContainer = styled.div`
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
+const Title = styled.h2`
+  color: #0E4721;
+  font-size: 2.8rem;
+  margin-bottom: 1.5rem;
+  max-width: 90%;
+  line-height: 1.2;
   position: relative;
 
-  @media (min-width: 768px) {
-    height: 250px;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: #FF6B52;
   }
 
-  @media (min-width: 1024px) {
-    height: 300px;
+  @media (max-width: 1024px) {
+    font-size: 2.4rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
   }
 `;
 
-const MemberImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+const Description = styled.p`
+  color: #555;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+`;
+
+const FeatureList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const FeatureItem = styled.li`
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-size: 1rem;
   transition: transform 0.3s ease;
 
-  ${TeamMember}:hover & {
-    transform: scale(1.1);
+  &:hover {
+    transform: translateX(5px);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
   }
 `;
 
-const MemberInfo = styled.div`
-  padding: 15px;
-
-  @media (min-width: 768px) {
-    padding: 20px;
-  }
-`;
-
-const MemberName = styled.h3`
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 5px;
-  font-weight: 600;
-
-  @media (min-width: 768px) {
-    font-size: 20px;
-  }
-`;
-
-const MemberRole = styled.p`
-  font-size: 12px;
-  color: #666;
-  margin-bottom: 10px;
-
-  @media (min-width: 768px) {
-    font-size: 14px;
-    margin-bottom: 15px;
-  }
-`;
-
-const SocialLinks = styled.div`
+const StyledIcon = styled.div`
+  color: #FF6B52;
+  margin-right: 0.75rem;
+  background-color: rgba(255, 107, 82, 0.1);
+  padding: 8px;
+  border-radius: 50%;
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 10px;
-
-  @media (min-width: 768px) {
-    gap: 15px;
-  }
 `;
 
-const SocialIcon = styled.a`
-  color: #999;
-  transition: color 0.3s ease, transform 0.3s ease;
+const Button = styled.button`
+  background-color: #FF6B52;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(255, 107, 82, 0.3);
 
   &:hover {
-    color: #333;
-    transform: translateY(-3px);
+    background-color: #e55a41;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 82, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
   }
 `;
 
-const TeamSection = () => {
-  const teamMembers = [
-    { name: 'Rishi Tiwari', role: 'Owner & CEO', image: img1 },
-    { name: 'Sophia Jenkins', role: 'Founder & CEO', image: img2 },
-  ];
+const Image = styled.img`
+  width: 500px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 4;
+  }
+`;
+
+const WhyChooseUs = () => {
   return (
-    <SectionContainer>
-      <SectionTitle>Behind the Scene</SectionTitle>
-      <MainTitle>Our Team</MainTitle>
-      <TeamGrid>
-        {teamMembers.map((member, index) => (
-          <TeamMember key={index}>
-            <ImageContainer>
-              <MemberImage src={member.image} alt={member.name} />
-            </ImageContainer>
-            <MemberInfo>
-              <MemberName>{member.name}</MemberName>
-              <MemberRole>{member.role}</MemberRole>
-            </MemberInfo>
-          </TeamMember>
-        ))}
-      </TeamGrid>
-    </SectionContainer>
+    <Section>
+      <ContentArea>
+        <SubTitle>Why Choose Us</SubTitle>
+        <Title>Why Students Choose Our Hostel?</Title>
+        <Description>
+          We offer a safe, comfortable, and supportive environment for female students in Nepal. Our hostel combines modern amenities with a nurturing atmosphere to create a true home away from home.
+        </Description>
+        <FeatureList>
+          {[
+            { text: 'Safe and secure environment', icon: Shield },
+            { text: 'Comfortable living spaces', icon: Home },
+            { text: 'Study-friendly atmosphere', icon: Book },
+            { text: 'Cultural diversity', icon: Users },
+            { text: 'Nutritious meals provided', icon: Home },
+            { text: 'Close to educational institutions', icon: Book },
+          ].map((feature, index) => (
+            <FeatureItem key={index}>
+              <StyledIcon>
+                <feature.icon size={18} />
+              </StyledIcon>
+              {feature.text}
+            </FeatureItem>
+          ))}
+        </FeatureList>
+      </ContentArea>
+      <ImageArea>
+        <Image src={imga} alt="Students in comfortable hostel environment" />
+      </ImageArea>
+    </Section>
   );
 };
 
-export default TeamSection;
+export default WhyChooseUs;

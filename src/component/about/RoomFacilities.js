@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
 import { Tv, Briefcase, Wifi, Lock, Building2 } from 'lucide-react';
 import img1 from "../../assets/rooms/delux.jpg";
 import img2 from "../../assets/rooms/family.jpg";
@@ -31,8 +31,7 @@ const RightSection = styled.div`
   height: 200px;
   position: relative;
   overflow: hidden;
-    margin: auto 0px;
-
+  margin: auto 0px;
 
   @media (min-width: 576px) {
     height: 250px;
@@ -73,12 +72,8 @@ const Title = styled.h2`
 
 const FacilitiesGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-
-  @media (min-width: 576px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
 
   @media (min-width: 992px) {
     gap: 30px;
@@ -114,12 +109,6 @@ const FacilityDescription = styled.p`
   line-height: 1.4;
 `;
 
-const fadeIn = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
-`;
-
-
 const ImageContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -152,17 +141,6 @@ const SmallImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`;
-
-const ToggleButton = styled.button`
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  padding: 5px 10px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 `;
 
 const RoomFacilities = () => {
@@ -198,10 +176,10 @@ const RoomFacilities = () => {
       </LeftSection>
       <RightSection>
         <ImageContainer>
-        <LargeImage src={img1} alt="Hotel room 1" />
-        <SmallImage src={img2} alt="Hotel room 2" />
-        <SmallImage src={img3} alt="Hotel room 3" />
-      </ImageContainer>
+          <LargeImage src={img1} alt="Hotel room 1" />
+          <SmallImage src={img2} alt="Hotel room 2" />
+          <SmallImage src={img3} alt="Hotel room 3" />
+        </ImageContainer>
       </RightSection>
     </Container>
   );

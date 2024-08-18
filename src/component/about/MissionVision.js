@@ -1,119 +1,97 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Target, Eye, BookOpen, Users } from 'lucide-react';
 
 const Section = styled.section`
-  // background-color: #fff5f5;
-  padding: 80px 0;
-`;
-
-const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 10px 20px;
+  background-color: #f9f9f9;
+
+  @media (max-width: 768px) {
+    padding: 50px 30px;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 0px 40px;
+  }
 `;
 
 const Title = styled.h2`
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   text-align: center;
   color: #333;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+  font-weight: bold;
+
+  @media (min-width: 768px) {
+    margin-bottom: 40px;
+  }
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
-  gap: 40px;
-  
-  @media (max-width: 768px) {
-    flex-direction: column;
+  flex-direction: column;
+  gap: 30px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 40px;
   }
 `;
 
-const Card = styled.div`
+const ContentBox = styled.div`
   flex: 1;
-  background-color: white;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
-  &:hover {
-    transform: translateY(-5px);
+  @media (min-width: 768px) {
+    padding: 30px;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 40px;
   }
 `;
 
-const CardTitle = styled.h3`
-  font-size: 1.5rem;
+const SubTitle = styled.h3`
+  font-size: clamp(1.3rem, 3vw, 2rem);
   color: #ff6b6b;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
-
-const CardContent = styled.p`
-  font-size: 1rem;
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 20px;
-`;
-
-const ValuesList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-`;
-
-const ValueItem = styled.li`
-  display: flex;
-  align-items: center;
-  gap: 10px;
   margin-bottom: 15px;
-  font-size: 1rem;
-  color: #666;
+  font-weight: bold;
+
+  @media (min-width: 768px) {
+    margin-bottom: 20px;
+  }
 `;
 
-const MissionVisionComponent = () => {
+const Content = styled.p`
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: #555;
+  line-height: 1.6;
+`;
+
+const MissionVisionSection = () => {
   return (
     <Section>
-      <Container>
-        <Title>Our Mission & Vision</Title>
-        <ContentWrapper>
-          <Card>
-            <CardTitle>
-              <Target size={24} />
-              Our Mission
-            </CardTitle>
-            <CardContent>
-              To provide a safe, nurturing, and empowering environment for young women pursuing higher education in Nepal. We strive to foster academic excellence, personal growth, and leadership skills that will enable our residents to become confident and successful individuals in their chosen fields.
-            </CardContent>
-          </Card>
-          <Card>
-            <CardTitle>
-              <Eye size={24} />
-              Our Vision
-            </CardTitle>
-            <CardContent>
-              To be the leading girls' hostel in Nepal, recognized for our commitment to holistic development, academic support, and creating a community of empowered young women who will contribute positively to society.
-            </CardContent>
-            <ValuesList>
-              <ValueItem>
-                <BookOpen size={20} />
-                Promoting academic excellence and lifelong learning
-              </ValueItem>
-              <ValueItem>
-                <Users size={20} />
-                Fostering a supportive and inclusive community
-              </ValueItem>
-              <ValueItem>
-                <Target size={20} />
-                Empowering women to become leaders in their fields
-              </ValueItem>
-            </ValuesList>
-          </Card>
-        </ContentWrapper>
-      </Container>
+      <Title>Our Mission and Vision</Title>
+      <ContentWrapper>
+        <ContentBox>
+          <SubTitle>Our Mission</SubTitle>
+          <Content>
+            Our mission is to provide a safe, supportive, and empowering living environment for female students in Nepal. We strive to foster academic excellence, personal growth, and cultural understanding, enabling our residents to thrive in their educational journey and become confident, well-rounded individuals.
+          </Content>
+        </ContentBox>
+        <ContentBox>
+          <SubTitle>Our Vision</SubTitle>
+          <Content>
+            We envision a future where every female student in Nepal has access to quality education and a nurturing living environment. Our hostel aims to be a beacon of excellence, setting the standard for student accommodation by blending modern amenities with a culture of respect, diversity, and continuous improvement.
+          </Content>
+        </ContentBox>
+      </ContentWrapper>
     </Section>
   );
 };
 
-export default MissionVisionComponent;
+export default MissionVisionSection;
