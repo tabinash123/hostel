@@ -352,38 +352,7 @@ const RoomsSection = () => {
       price: "NPR 12,000 per month",
       amenities: "Single bed, Large study desk, Wardrobe, En-suite bathroom"
     },
-    {
-      name: "Triple Share Economy",
-      image: img3,
-      description: "Budget-friendly option with three beds, ideal for students looking to save on accommodation.",
-      features: { wifi: true,  capacity: 3, fan: true, tv: false, safe: true },
-      price: "NPR 6,000 per month",
-      amenities: "Three single beds, Study corners, Shared storage, Shared bathroom"
-    },
-    {
-      name: "Quad Share Suite",
-      image: img4,
-      description: "Large room for four, promoting a communal living experience with shared facilities.",
-      features: { wifi: true, capacity: 4,  fan: true, tv: true, safe: true },
-      price: "NPR 7,000 per month",
-      amenities: "Four single beds, Study area, Lounge space, Shared bathroom"
-    },
-    {
-      name: "Premium Single",
-      image: img5,
-      description: "Our most luxurious single room option with premium amenities and mountain views.",
-      features: { wifi: true, capacity: 1,  fan: true, tv: true, safe: true },
-      price: "NPR 15,000 per month",
-      amenities: "Double bed, Large study desk, Wardrobe, En-suite bathroom, Mini-fridge"
-    },
-    {
-      name: "Double Study Suite",
-      image: img6,
-      description: "Designed for serious students, this room features extra study space and a quiet environment.",
-      features: { wifi: true,  capacity: 2,  fan: true, tv: false, safe: true },
-      price: "NPR 10,000 per month",
-      amenities: "Two single beds, Large study desks, Bookshelves, Shared bathroom, Reading lamps"
-    }
+    
   ];
 
   return (

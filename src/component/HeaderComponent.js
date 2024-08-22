@@ -293,8 +293,8 @@ const Header = () => {
         <Nav>
           <NavItem to="/">Home</NavItem>
           <NavItem to="/room">Rooms & Facilities</NavItem>
-          <NavItem to="/contact">Contact</NavItem>
           <NavItem to="/about">About-Us</NavItem>
+          <NavItem to="/contact">Contact</NavItem>
         </Nav>
       </MainHeader>
       <Overlay isOpen={isDrawerOpen} onClick={toggleDrawer} />
@@ -312,11 +312,11 @@ const Header = () => {
           <DrawerNavItem to="/room" onClick={toggleDrawer}>
             <BedDouble size={18} /> Rooms & Facilities
           </DrawerNavItem>
-          <DrawerNavItem to="/contact" onClick={toggleDrawer}>
-            <Mail size={18} /> Contact
-          </DrawerNavItem>
           <DrawerNavItem to="/about" onClick={toggleDrawer}>
             <Info size={18} /> About-Us
+          </DrawerNavItem>
+          <DrawerNavItem to="/contact" onClick={toggleDrawer}>
+            <Mail size={18} /> Contact
           </DrawerNavItem>
          
         </DrawerNav>

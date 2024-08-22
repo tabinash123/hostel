@@ -2,10 +2,10 @@ import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { Image as ImageIcon, X } from 'lucide-react';
 
-import img1 from "../../assets/resort/garden1.jpg";
-import img2 from "../../assets/resort/garden2.jpg";
-import img3 from "../../assets/resort/garden3.jpg";
-import img4 from "../../assets/resort/garden4.jpg";
+// import img1 from "../../assets/resort/garden1.jpg";
+// import img2 from "../../assets/resort/garden2.jpg";
+// import img3 from "../../assets/resort/garden3.jpg";
+// import img4 from "../../assets/resort/garden4.jpg";
 import img5 from "../../assets/resort/reception.jpg";
 import img6 from "../../assets/resort/hotel1.jpg";
 import img7 from "../../assets/resort/hotel2.jpg";

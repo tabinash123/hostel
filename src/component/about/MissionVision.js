@@ -80,13 +80,13 @@ const MissionVisionSection = () => {
         <ContentBox>
           <SubTitle>Our Mission</SubTitle>
           <Content>
-            Our mission is to provide a safe, supportive, and empowering living environment for female students in Nepal. We strive to foster academic excellence, personal growth, and cultural understanding, enabling our residents to thrive in their educational journey and become confident, well-rounded individuals.
+            Our mission is to provide a safe, supportive, and empowering living environment for Medical students in Nepal. We strive to foster academic excellence, personal growth, and cultural understanding, enabling our residents to thrive in their educational journey and become confident, well-rounded individuals.
           </Content>
         </ContentBox>
         <ContentBox>
           <SubTitle>Our Vision</SubTitle>
           <Content>
-            We envision a future where every female student in Nepal has access to quality education and a nurturing living environment. Our hostel aims to be a beacon of excellence, setting the standard for student accommodation by blending modern amenities with a culture of respect, diversity, and continuous improvement.
+            We envision a future where every  student in Nepal has access to quality education and a nurturing living environment. Our hostel aims to be a beacon of excellence, setting the standard for student accommodation by blending modern amenities with a culture of respect, diversity, and continuous improvement.
           </Content>
         </ContentBox>
       </ContentWrapper>

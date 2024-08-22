@@ -162,51 +162,44 @@ const StarIcon = styled(Star)`
 `;
 
 const StudentReviewSection = () => {
-  const reviews = [
-    {
-      name: "Aarati Sharma",
-      image: "https://example.com/aarati.jpg",
-      course: "Bachelor of Computer Science",
-      content: "Living in this hostel has been a wonderful experience. The study environment is perfect, and I've made lifelong friends here.",
-      rating: 5
-    },
-    {
-      name: "Priya Thapa",
-      image: "https://example.com/priya.jpg",
-      course: "Bachelor of Business Administration",
-      content: "The hostel staff is incredibly supportive, and the facilities are top-notch. It feels like a home away from home.",
-      rating: 4
-    },
-    {
-      name: "Sabina Gurung",
-      image: "https://example.com/sabina.jpg",
-      course: "Bachelor of Nursing",
-      content: "I appreciate the security measures in place. As a student far from home, it gives me and my parents peace of mind.",
-      rating: 5
-    },
-    {
-      name: "Nisha Poudel",
-      image: "https://example.com/nisha.jpg",
-      course: "Bachelor of Arts",
-      content: "The location is perfect - close to my college and local amenities. The rooms are always clean and well-maintained.",
-      rating: 4
-    },
-    {
-      name: "Anita Bhattarai",
-      image: "https://example.com/anita.jpg",
-      course: "Bachelor of Engineering",
-      content: "I love the study rooms and the Wi-Fi connectivity. It's been crucial for my academic success.",
-      rating: 5
-    },
-    {
-      name: "Bipana Karki",
-      image: "https://example.com/bipana.jpg",
-      course: "Bachelor of Science",
-      content: "The food in the hostel mess is delicious and reminds me of home. The staff is always open to our feedback.",
-      rating: 4
-    }
-  ];
-
+const reviews = [
+  {
+    name: "Aarati Sharma",
+    image: "https://example.com/aarati.jpg",
+    content: "The hostel at Rise Institute is perfect for MBBS aspirants. The study environment is conducive to long hours of preparation, and the peer support is invaluable.",
+    rating: 5
+  },
+  {
+    name: "Priya Thapa",
+    image: "https://example.com/priya.jpg",
+    content: "I find the hostel's resources incredibly helpful for my medical entrance exam preparation. The staff understands the pressures we're under and provides great support.",
+    rating: 4
+  },
+  {
+    name: "Sabin Gurung",
+    image: "https://example.com/sabina.jpg",
+    content: "The hostel's proximity to Rise Institute saves a lot of commute time. The security measures give my parents peace of mind, allowing me to focus on my studies.",
+    rating: 5
+  },
+  {
+    name: "Nisha Poudel",
+    image: "https://example.com/nisha.jpg",
+    content: "The hostel organizes group study sessions which have been immensely helpful. The rooms are comfortable, allowing for much-needed rest between intense study periods.",
+    rating: 4
+  },
+  {
+    name: "Anita Bhattarai",
+    image: "https://example.com/anita.jpg",
+    content: "The hostel's 24/7 Wi-Fi and dedicated study areas make preparation much easier. The environment is perfect for focused, long-term study for medical exams.",
+    rating: 5
+  },
+  {
+    name: "Bipin Karki",
+    image: "https://example.com/bipana.jpg",
+    content: "The hostel's meal plan is well-suited for busy medical aspirants. The food is nutritious and varied, which helps maintain our health during the stressful preparation period.",
+    rating: 4
+  }
+];
   return (
     <ReviewSection>
       <Title>What Our Students Say</Title>
@@ -218,7 +211,6 @@ const StudentReviewSection = () => {
               <StudentImage src={review.image} alt={review.name} />
               <StudentInfo>
                 <StudentName>{review.name}</StudentName>
-                <StudentCourse>{review.course}</StudentCourse>
               </StudentInfo>
             </ReviewHeader>
             <ReviewContent>

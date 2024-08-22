@@ -224,16 +224,16 @@ const ContactPage = () => {
               </InfoText>
             </InfoItem>
             <Map>
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.240112563968!2d85.31315011503999!3d27.70985798279028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1908fa1777d5%3A0x9ae6e7d129d25502!2sThamel%2C%20Kathmandu%2044600%2C%20Nepal!5e0!3m2!1sen!2sus!4v1660434910562!5m2!1sen!2sus" 
-                width="100%" 
-                height="100%" 
-                style={{border:0}} 
-                allowFullScreen="" 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </Map>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3531.9962669620993!2d85.32496431503138!3d27.711248920998237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDQyJzQwLjUiTiA4NcKwMTknMzcuOCJF!5e0!3m2!1sen!2sus!4v1660434910562!5m2!1sen!2sus"
+    width="100%"
+    height="100%"
+    style={{border:0}}
+    allowFullScreen=""
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+  ></iframe>
+</Map>
           </ContactInfo>
         </Content>
       </ContentWrapper>
