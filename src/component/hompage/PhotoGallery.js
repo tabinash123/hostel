@@ -16,7 +16,6 @@ import img13 from "../../assets/gallary/3.jpg";
 
 const GallerySection = styled.section`
   padding: 1rem;
-  background-color: #f5f5f5;
 
   @media (min-width: 768px) {
     padding: 1.5rem;

@@ -1,138 +1,139 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Wifi, BookOpen, Coffee, Shield, Utensils, Sunset, Wind, Users } from 'lucide-react';
 
-const Section = styled.section`
-  max-width: 1200px;
-  margin: 0 auto;
+// Import images (adjust paths as needed)
+
+import library from '../../assets/hostel/library.PNG';
+import canteen from '../../assets/hostel/canteen.PNG';
+import garden from '../../assets/hostel/garden.PNG';
+import room from '../../assets/hostel/room.PNG';
+import recreational from '../../assets/hostel/recreational.PNG';
+
+const SectionContainer = styled.section`
   padding: 40px 20px;
-  background-color: #fff;
+  // background-color: #f5f5f5;
+`;
 
-  @media (min-width: 768px) {
-    padding: 50px 30px;
-  }
-
-  @media (min-width: 1024px) {
-    padding: 60px 40px;
-  }
+const TitleContainer = styled.div`
+  text-align: center;
+  margin-bottom: 40px;
 `;
 
 const Title = styled.h2`
-  font-size: clamp(1.8rem, 4vw, 3.5rem);
-  text-align: center;
   color: #333;
-  margin-bottom: 15px;
-  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 10px;
 
   @media (min-width: 768px) {
-    margin-bottom: 20px;
+    font-size: 2.5rem;
   }
 `;
 
 const Subtitle = styled.p`
-  font-size: clamp(0.9rem, 1.5vw, 1.25rem);
-  text-align: center;
-  color: #ff6b6b;
-  margin-bottom: 30px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  color: #666;
+  font-size: 1rem;
 
   @media (min-width: 768px) {
-    margin-bottom: 40px;
+    font-size: 1.2rem;
   }
 `;
 
-const AmenitiesGrid = styled.div`
+const CardContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @media (min-width: 1024px) {
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
   }
 `;
 
-const AmenityCard = styled.div`
-  background-color: #f8f8f8;
+const Card = styled.div`
+  background-color: white;
   border-radius: 8px;
-  padding: 15px;
-  text-align: center;
-  transition: all 0.3s ease;
+  overflow: hidden;
 
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
+`;
+
+const CardImage = styled.img`
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 
   @media (min-width: 768px) {
-    padding: 20px;
+    height: 150px;
   }
 `;
 
-const IconWrapper = styled.div`
-  margin-bottom: 10px;
-  color: #ff6b6b;
-
-  @media (min-width: 768px) {
-    margin-bottom: 15px;
-  }
+const CardContent = styled.div`
+  padding: 20px;
 `;
 
-const AmenityTitle = styled.h3`
-  font-size: 1rem;
+const CardTitle = styled.h3`
+  margin: 0 0 10px 0;
   color: #333;
-  margin-bottom: 8px;
-  font-weight: bold;
-
-  @media (min-width: 768px) {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
+  font-size: 1.2rem;
 `;
 
-const AmenityDescription = styled.p`
-  font-size: 0.8rem;
+const CardDescription = styled.p`
   color: #666;
-
-  @media (min-width: 768px) {
-    font-size: 0.9rem;
-  }
+  font-size: 0.9rem;
+  line-height: 1.5;
 `;
 
-const AmenitiesSection = () => {
-  const amenities = [
-    { icon: <Wifi size={24} />, title: "High-Speed Wi-Fi", description: "Fast internet for online classes and research." },
-    { icon: <BookOpen size={24} />, title: "Study Areas", description: "Quiet spaces for focused learning and group studies." },
-    { icon: <Coffee size={24} />, title: "Common Room", description: "Comfortable space to relax and socialize with peers." },
-    { icon: <Shield size={24} />, title: "24/7 Security", description: "Round-the-clock security with CCTV surveillance." },
-    { icon: <Utensils size={24} />, title: "Dining Hall", description: "Hygienic meals with vegetarian options available." },
-    { icon: <Sunset size={24} />, title: "Outdoor Space", description: "Safe courtyard for outdoor activities and fresh air." },
-    { icon: <Wind size={24} />, title: "Laundry Facilities", description: "On-site laundry machines for convenience." },
-    { icon: <Users size={24} />, title: "Counseling Services", description: "Professional support for academic and personal growth." }
-  ];
+const services = [
+  {
+    title: "Affordable Rooms",
+    description: "Our library provides a quiet environment for focused study. With a wide range of medical textbooks, journals, and digital resources, you'll have everything you need for your medical preparation. The library is open 24/7, ensuring you can study whenever you need to.",
+    image: room
+  },
+  {
+    title: "Library",
+    description: "Our library provides a quiet environment for focused study. With a wide range of medical textbooks, journals, and digital resources, you'll have everything you need for your medical preparation. The library is open 24/7, ensuring you can study whenever you need to.",
+    image: library
+  },
+  {
+    title: "Hygenic Canteen",
+    description: "Our canteen offers a diverse menu of healthy, balanced meals prepared fresh daily. We cater to various dietary requirements, ensuring that you stay energized throughout your rigorous study schedule. It's also a great place to socialize and take study breaks.",
+    image: canteen
+  },
+  {
+    title: "Peaceful Garden",
+    description: "Our well-equipped gym helps you maintain a healthy work-life balance. Regular exercise is crucial for managing stress and improving cognitive function. We feature modern cardio and strength training equipment, suitable for all fitness levels.",
+    image: garden
+  },
+  {
+    title: "Fun Activities",
+    description: "Stay connected with our high-speed Wi-Fi available throughout the hostel. Whether you're researching for your studies, attending online lectures, or staying in touch with family and friends, our reliable internet connection has got you covered in all areas of the hostel.",
+    image: recreational
+  }
+];
 
+const HostelServices = () => {
   return (
-    <Section>
-      <Title>Hostel Amenities</Title>
-      <Subtitle>Experience a safe and supportive living environment designed specifically for female students.</Subtitle>
-      <AmenitiesGrid>
-        {amenities.map((amenity, index) => (
-          <AmenityCard key={index}>
-            <IconWrapper aria-hidden="true">{amenity.icon}</IconWrapper>
-            <AmenityTitle>{amenity.title}</AmenityTitle>
-            <AmenityDescription>{amenity.description}</AmenityDescription>
-          </AmenityCard>
+    <SectionContainer>
+      <TitleContainer>
+        <Title>Our Facilities</Title>
+        <Subtitle>Designed to support your medical preparation journey</Subtitle>
+      </TitleContainer>
+      <CardContainer>
+        {services.map((service, index) => (
+          <Card key={index}>
+            <CardImage src={service.image} alt={service.title} />
+            <CardContent>
+              <CardTitle>{service.title}</CardTitle>
+            </CardContent>
+          </Card>
         ))}
-      </AmenitiesGrid>
-    </Section>
+      </CardContainer>
+    </SectionContainer>
   );
 };
 
-export default AmenitiesSection;
+export default HostelServices;

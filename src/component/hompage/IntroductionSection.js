@@ -44,7 +44,7 @@ const Title = styled.h2`
   color: #333;
   margin-bottom: 20px;
   font-weight: 700;
-  letter-spacing: -0.5px;
+  // letter-spacing: -0.5px;
   line-height: 1.2;
   @media (max-width: 1024px) {
     font-size: 2.5rem;
@@ -59,7 +59,7 @@ const Subtitle = styled.h3`
   color: #666;
   margin-bottom: 20px;
   font-weight: 400;
-  letter-spacing: 0.5px;
+  // letter-spacing: 0.5px;
   @media (max-width: 768px) {
     font-size: 1.2rem;
   }
@@ -79,7 +79,7 @@ const Underline = styled.div`
 const Description = styled.p`
   font-size: 1.1rem;
   color: #444;
-  line-height: 1.8;
+  line-height: 1.3;
   margin-bottom: 25px;
   text-align: justify;
   @media (max-width: 768px) {
@@ -105,7 +105,8 @@ const ImageWrapper = styled.div`
     max-width: 40%;
     height: auto;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 968px) {
+  display: none;
     max-width: 100%;
     height: auto;
   }
@@ -115,13 +116,7 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  &:hover {
-    transform: scale(1.02);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  }
+
 `;
 
 const IntroductionComponent = () => {

@@ -1,232 +1,190 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Star, Quote } from 'lucide-react';
+import { Minus, Plus } from 'lucide-react';
+import img1 from '../../assets/resort/hotel2.jpg'
 
-const ReviewSection = styled.section`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 30px 15px;
-  background-color: #f8f9fa;
+const FAQSection = styled.section`
+  padding: 50px 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 
   @media (min-width: 768px) {
-    padding: 50px 20px;
+    margin: 40px auto;
+    flex-direction: row;
+    gap: 40px;
   }
 
   @media (min-width: 1024px) {
-    padding: 75px 20px;
+    margin: 50px auto;
   }
 `;
 
+const LeftColumn = styled.div`
+  flex: 1;
+`;
+
+const RightColumn = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const Title = styled.h2`
-  font-size: 1.5rem;
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 15px;
-  font-weight: 700;
+  font-size: 0.9rem;
+  color: #ff4500;
+  margin-bottom: 10px;
+  font-weight: normal;
 
   @media (min-width: 768px) {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 1rem;
+  }
+`;
+
+const Subtitle = styled.h3`
+  font-size: 2rem;
+  color: #0c2e1c;
+  margin-bottom: 20px;
+  font-weight: bold;
+
+  @media (min-width: 768px) {
+    font-size: 2.25rem;
+    margin-bottom: 25px;
   }
 
   @media (min-width: 1024px) {
     font-size: 2.5rem;
-  }
-`;
-
-const Subtitle = styled.p`
-  font-size: 0.9rem;
-  color: #ff6b6b;
-  text-align: center;
-  margin-bottom: 20px;
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-
-  @media (min-width: 768px) {
-    font-size: 1rem;
     margin-bottom: 30px;
-    max-width: 80%;
-  }
-
-  @media (min-width: 1024px) {
-    font-size: 1.1rem;
-    margin-bottom: 40px;
-    max-width: 600px;
   }
 `;
 
-const ReviewGrid = styled.div`
-  display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-  }
-
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-  }
-`;
-
-const ReviewCard = styled.div`
-  background-color: #ffffff;
-  border-radius: 15px;
-  padding: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-
-  @media (min-width: 768px) {
-    padding: 20px;
-  }
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  }
-`;
-
-const ReviewHeader = styled.div`
-  display: flex;
-  align-items: center;
+const FAQItem = styled.div`
   margin-bottom: 15px;
-`;
-
-const StudentImage = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 15px;
+  border-bottom: 1px solid #e0e0e0;
 
   @media (min-width: 768px) {
-    width: 60px;
-    height: 60px;
+    margin-bottom: 20px;
   }
 `;
 
-const StudentInfo = styled.div`
-  flex-grow: 1;
-`;
-
-const StudentName = styled.h3`
-  font-size: 1rem;
-  color: #34495e;
-  margin-bottom: 5px;
-
-  @media (min-width: 768px) {
-    font-size: 1.1rem;
-  }
-`;
-
-const StudentCourse = styled.p`
-  font-size: 0.8rem;
-  color: #7f8c8d;
-
-  @media (min-width: 768px) {
-    font-size: 0.9rem;
-  }
-`;
-
-const ReviewContent = styled.div`
-  position: relative;
+const Question = styled.div`
+  padding: 12px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: #0c2e1c;
+  font-weight: bold;
   font-size: 0.9rem;
-  color: #2c3e50;
-  line-height: 1.6;
-  margin-bottom: 15px;
 
   @media (min-width: 768px) {
-    font-size: 0.95rem;
+    padding: 15px 0;
+    font-size: 1rem;
   }
 `;
 
-const QuoteIcon = styled(Quote)`
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  color: #ff6b6b;
-  opacity: 0.2;
+const Answer = styled.div`
+  padding: 0 0 12px 0;
+  color: #666;
+  line-height: 1.6;
+  font-size: 0.9rem;
+
+  @media (min-width: 768px) {
+    padding: 0 0 15px 0;
+    font-size: 1rem;
+  }
 `;
 
-const ReviewRating = styled.div`
+const IconWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: ${props => props.isOpen ? '#ff4500' : '#f0f0f0'};
+  border-radius: 4px;
+  color: ${props => props.isOpen ? 'white' : '#0c2e1c'};
+
+  @media (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
-const StarIcon = styled(Star)`
-  color: #f1c40f;
-  margin-right: 2px;
+const Image = styled.img`
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+
+  @media (max-width: 768px) {
+    display: none;
+    max-height: 500px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 500px;
+    height: 500px;
+  }
 `;
 
-const StudentReviewSection = () => {
-const reviews = [
+const FAQList = [
   {
-    name: "Aarati Sharma",
-    image: "https://example.com/aarati.jpg",
-    content: "The hostel at Rise Institute is perfect for MBBS aspirants. The study environment is conducive to long hours of preparation, and the peer support is invaluable.",
-    rating: 5
+    question: "Does Rise Institute For Medical Education provide online resources for MBBS and MD entrance exam preparation?",
+    answer: "Yes, we offer a comprehensive digital learning platform that includes video lectures, practice tests, and interactive study materials for MBBS and MD entrance exams. Our online resources are regularly updated to align with the latest exam patterns and syllabus changes by the Nepal Medical Council."
   },
   {
-    name: "Priya Thapa",
-    image: "https://example.com/priya.jpg",
-    content: "I find the hostel's resources incredibly helpful for my medical entrance exam preparation. The staff understands the pressures we're under and provides great support.",
-    rating: 4
+    question: "How does the hostel support students in accessing telemedicine and virtual clinical rotations?",
+    answer: "We have high-speed fiber-optic internet throughout the hostel, including dedicated spaces for telemedicine sessions. We also provide access to virtual reality (VR) setups for simulated clinical experiences, helping students participate in virtual rotations with partner hospitals across Nepal and internationally."
   },
   {
-    name: "Sabin Gurung",
-    image: "https://example.com/sabina.jpg",
-    content: "The hostel's proximity to Rise Institute saves a lot of commute time. The security measures give my parents peace of mind, allowing me to focus on my studies.",
-    rating: 5
+    question: "What measures does the hostel take to ensure a healthy living environment, especially considering recent global health concerns?",
+    answer: "We maintain strict hygiene protocols, including regular sanitization of common areas, HEPA air purifiers in study rooms and lounges, and contactless sanitizer dispensers throughout the facility. We also have a tie-up with a nearby health clinic for quick medical assistance and offer mental health support services."
   },
   {
-    name: "Nisha Poudel",
-    image: "https://example.com/nisha.jpg",
-    content: "The hostel organizes group study sessions which have been immensely helpful. The rooms are comfortable, allowing for much-needed rest between intense study periods.",
-    rating: 4
+    question: "Are there opportunities for research collaboration or internships with local medical institutions?",
+    answer: "Absolutely! We have partnerships with several leading hospitals and research institutions in Kathmandu. Our career development office helps students find and apply for research assistant positions, internships, and volunteer opportunities. We also organize regular workshops on research methodologies and scientific paper writing."
   },
   {
-    name: "Anita Bhattarai",
-    image: "https://example.com/anita.jpg",
-    content: "The hostel's 24/7 Wi-Fi and dedicated study areas make preparation much easier. The environment is perfect for focused, long-term study for medical exams.",
-    rating: 5
-  },
-  {
-    name: "Bipin Karki",
-    image: "https://example.com/bipana.jpg",
-    content: "The hostel's meal plan is well-suited for busy medical aspirants. The food is nutritious and varied, which helps maintain our health during the stressful preparation period.",
-    rating: 4
+    question: "How does the hostel accommodate the diverse dietary needs of international students?",
+    answer: "Our cafeteria offers a variety of meal options, including vegetarian, vegan, halal, and gluten-free choices. We have a rotating menu that features both Nepali and international cuisines. Students can also access shared kitchen facilities to prepare their own meals if they prefer. We regularly collect feedback to ensure our menu meets the diverse needs of our student community."
   }
 ];
+
+
+const FAQComponent = () => {
+  const [openIndex, setOpenIndex] = useState(0);
+
+  const toggleQuestion = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
-    <ReviewSection>
-      <Title>What Our Students Say</Title>
-      <Subtitle>Hear from our residents about their experiences living in our hostel</Subtitle>
-      <ReviewGrid>
-        {reviews.map((review, index) => (
-          <ReviewCard key={index}>
-            <ReviewHeader>
-              <StudentImage src={review.image} alt={review.name} />
-              <StudentInfo>
-                <StudentName>{review.name}</StudentName>
-              </StudentInfo>
-            </ReviewHeader>
-            <ReviewContent>
-              <QuoteIcon size={24} />
-              {review.content}
-            </ReviewContent>
-            <ReviewRating>
-              {[...Array(5)].map((_, i) => (
-                <StarIcon key={i} size={16} fill={i < review.rating ? "#f1c40f" : "none"} />
-              ))}
-            </ReviewRating>
-          </ReviewCard>
+    <FAQSection>
+      <LeftColumn>
+        <Title>Have Any Questions?</Title>
+        <Subtitle>Frequently Asked Questions</Subtitle>
+        {FAQList.map((faq, index) => (
+          <FAQItem key={index}>
+            <Question onClick={() => toggleQuestion(index)}>
+              {faq.question}
+              <IconWrapper isOpen={openIndex === index}>
+                {openIndex === index ? <Minus size={16} /> : <Plus size={16} />}
+              </IconWrapper>
+            </Question>
+            {openIndex === index && (
+              <Answer>{faq.answer}</Answer>
+            )}
+          </FAQItem>
         ))}
-      </ReviewGrid>
-    </ReviewSection>
+      </LeftColumn>
+      <RightColumn>
+        <Image src={img1} alt="Rise Institute Study Room" />
+      </RightColumn>
+    </FAQSection>
   );
 };
 
-export default StudentReviewSection;
+export default FAQComponent;

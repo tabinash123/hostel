@@ -1,113 +1,78 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link, NavLink } from 'react-router-dom';
-import { Phone, User, Menu, X, Home, BedDouble, Mail, Info, Calendar } from 'lucide-react';
+// import logo from '../assets/logo.jpg'; // Ensure this path is correct
 
-const HeaderWrapper = styled.header`
-  font-family: Arial, sans-serif;
+const HeaderContainer = styled.header`
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: ${props => props.isScrolled ? 'sticky' : 'relative'};
+  top: 0;
+  z-index: 1000;
 `;
 
 const TopBar = styled.div`
   background-color: #000000;
-  color: #ffffff;
+  color: #fff;
+  padding: 5px 5%;
+  font-size: 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 20px;
-  font-size: 14px;
 
   @media (max-width: 768px) {
   display: none;
     flex-direction: column;
     align-items: flex-start;
+    padding: 10px 5%;
   }
 `;
 
-const PhoneNumber = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-`;
-
-const TopBarRight = styled.div`
+const ContactInfo = styled.div`
   display: flex;
   gap: 20px;
 
   @media (max-width: 768px) {
-    margin-top: 5px;
-  }
-`;
-
-const Logo = styled.div`
-  font-weight: bold;
-  color: #ffffff;
-  font-size: 18px;
-`;
-
-const SubHeader = styled.div`
-  background-color: #f0ece3;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-
-  @media (max-width: 768px) {
-  display: none;
     flex-direction: column;
-    align-items: flex-start;
+    gap: 5px;
+    margin-bottom: 5px;
   }
 `;
 
-const CalculateButton = styled(Link)`
-  background: none;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  color: #000000;
-  padding: 5px 0;
-  text-decoration: none;
-`;
-
-const FindAdvisor = styled(Link)`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  color: #000000;
-  padding: 5px 0;
-  text-decoration: none;
-
-  @media (max-width: 768px) {
-    margin-top: 5px;
-  }
-`;
-
-const MainHeader = styled.div`
+const HeaderContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 20px;
-  background-color: #ffffff;
-
-  @media (max-width: 768px) {
-    // flex-wrap: wrap;
-  padding: 10px 10px;
-  }
-`;
-
-const MainLogo = styled(Link)`
-  font-size: 24px;
-  font-weight: bold;
-  color: #000000;
-  text-decoration: none;
+  padding: 30px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
 
   @media (max-width: 1024px) {
-    flex-basis: 100%;
-    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+`;
+
+const Logo = styled.a`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000000;
+  font-size: 24px;
+  font-weight: 700;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+`;
+
+const LogoImage = styled.img`
+  height: 60px;
+  width: auto;
+  margin-right: 10px;
+  border-radius:10px;
+
+  @media (max-width: 768px) {
+    height: 80px;
   }
 `;
 
@@ -116,219 +81,178 @@ const Nav = styled.nav`
   gap: 20px;
 
   @media (max-width: 1024px) {
-    flex-basis: 100%;
-    margin-bottom: 10px;
-  }
-
-  @media (max-width: 768px) {
     display: none;
   }
 `;
 
-const NavItem = styled(NavLink)`
-  text-decoration: none;
+const NavItem = styled.a`
   color: #000000;
-  font-weight: normal;
-  
-  &:hover, &.active {
-    text-decoration: underline;
-    font-weight: bold;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 5px 0;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff9800;
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: #ff9800;
+    &:after {
+      width: 100%;
+    }
   }
 `;
 
-const BookVisitButton = styled(Link)`
-  background-color: #ffa500;
-  color: #000000;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
-
-  @media (max-width: 1024px) {
-    flex-basis: 100%;
-  }
-`;
-
-const MenuButton = styled.button`
+const MobileMenuIcon = styled.button`
   display: none;
   background: none;
   border: none;
+  font-size: 28px;
   cursor: pointer;
+  color: #1a4d2e;
+  z-index: 1001;
+  transition: transform 0.3s ease;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: block;
   }
+
+  ${props => props.isOpen && `
+    transform: rotate(90deg);
+  `}
 `;
 
-const Drawer = styled.div`
+const MobileMenuOverlay = styled.div`
   position: fixed;
   top: 0;
-  right: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
-  width: 280px;
-  height: 100%;
-  background-color: #ffffff;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-  transition: right 0.3s ease-in-out;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: ${props => props.isOpen ? 'block' : 'none'};
+  opacity: ${props => props.isOpen ? 1 : 0};
+  transition: opacity 0.3s ease;
+  z-index: 999;
+`;
+
+const MobileMenu = styled.div`
+  position: fixed;
+  top: 0;
+  right: ${props => props.isOpen ? '0' : '-100%'};
+  width: 80%;
+  max-width: 300px;
+  height: 100vh;
+  background-color: #f4f1e8;
+  padding: 80px 20px 20px;
+  transition: right 0.3s ease;
   overflow-y: auto;
-`;
+  z-index: 1000;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
 
-const DrawerHeader = styled.div`
-  padding: 20px;
-  background-color: #f0ece3;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const DrawerLogo = styled.div`
-  font-size: 18px;
-  font-weight: bold;
-  color: #000000;
-`;
-
-const DrawerNav = styled.nav`
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  justify-content: flex-start;
+  align-items: stretch;
 `;
 
-const DrawerNavItem = styled(NavLink)`
-  text-decoration: none;
-  color: #000000;
-  font-weight: normal;
-  font-size: 16px;
-  padding: 15px 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border-bottom: 1px solid #f0f0f0;
-  
-  &:hover, &.active {
-    background-color: #f9f9f9;
-    font-weight: bold;
-  }
+const MobileNavItem = styled(NavItem)`
+  display: block;
+  padding: 15px 0;
+  font-size: 18px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
 
   &:last-child {
     border-bottom: none;
   }
+
+  &:after {
+    display: none;
+  }
+
+  &:hover {
+    background-color: rgba(255, 152, 0, 0.1);
+  }
 `;
+
+
 
 const CloseButton = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 20px;
   background: none;
   border: none;
-  cursor: pointer;
+  font-size: 24px;
   color: #000000;
-`;
-
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
-  visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-  z-index: 999;
-`;
-
-const DrawerFooter = styled.div`
-  padding: 20px;
-  background-color: #f0ece3;
-  margin-top: auto;
-`;
-
-const DrawerContact = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-  font-size: 14px;
+  cursor: pointer;
 `;
 
 const Header = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-  const toggleDrawer = () => {
-    setIsDrawerOpen(!isDrawerOpen);
-  };
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    if (isDrawerOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-
-    return () => {
-      document.body.style.overflow = 'unset';
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
     };
-  }, [isDrawerOpen]);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
-    <HeaderWrapper>
+    <HeaderContainer isScrolled={isScrolled}>
       <TopBar>
-        <PhoneNumber>
-          <Phone size={14} />
-          <span>+977 01-4541165</span>
-        </PhoneNumber>
-        <TopBarRight>
-          <Logo>Rise Institute For Medical Education</Logo>
-          
-        </TopBarRight>
+        <ContactInfo>
+          <span>📞 +977 985-5057182</span>
+          <span>✉️ info@echoadventureresort.com</span>
+        </ContactInfo>
+        <span>🐘 Discover the Wild Beauty of Chitwan</span>
       </TopBar>
-
-      <MainHeader>
-        <MainLogo to="/">Rise Institute For Medical Education</MainLogo>
-        <MenuButton onClick={toggleDrawer}>
-          <Menu size={24} />
-        </MenuButton>
+      <HeaderContent>
+        <Logo href="/">
+          {/* <LogoImage src={logo} alt="Sauraha Resort Logo" /> */}
+          Rise Institute
+        </Logo>
         <Nav>
-          <NavItem to="/">Home</NavItem>
-          <NavItem to="/room">Rooms & Facilities</NavItem>
-          <NavItem to="/about">About-Us</NavItem>
-          <NavItem to="/contact">Contact</NavItem>
+          <NavItem href="/">Home</NavItem>
+          <NavItem href="/about">About</NavItem>
+          <NavItem href="/room">Services</NavItem>
+          <NavItem href="/contact">Contact</NavItem>
         </Nav>
-      </MainHeader>
-      <Overlay isOpen={isDrawerOpen} onClick={toggleDrawer} />
-      <Drawer isOpen={isDrawerOpen}>
-        <DrawerHeader>
-          <DrawerLogo>Creative Genius Hostel</DrawerLogo>
-          <CloseButton onClick={toggleDrawer}>
-            <X size={24} />
-          </CloseButton>
-        </DrawerHeader>
-        <DrawerNav>
-          <DrawerNavItem to="/" onClick={toggleDrawer}>
-            <Home size={18} /> Home
-          </DrawerNavItem>
-          <DrawerNavItem to="/room" onClick={toggleDrawer}>
-            <BedDouble size={18} /> Rooms & Facilities
-          </DrawerNavItem>
-          <DrawerNavItem to="/about" onClick={toggleDrawer}>
-            <Info size={18} /> About-Us
-          </DrawerNavItem>
-          <DrawerNavItem to="/contact" onClick={toggleDrawer}>
-            <Mail size={18} /> Contact
-          </DrawerNavItem>
-         
-        </DrawerNav>
-        <DrawerFooter>
-          <DrawerContact>
-            <Phone size={14} />
-            <span>+977 1234567890</span>
-          </DrawerContact>
-          <CalculateButton to="/calculate-fees" onClick={toggleDrawer}>Calculate Hostel Fees</CalculateButton>
-        </DrawerFooter>
-      </Drawer>
-    </HeaderWrapper>
+        <MobileMenuIcon onClick={toggleMobileMenu}>
+          ☰
+        </MobileMenuIcon>
+      </HeaderContent>
+  
+      
+      <MobileMenuOverlay isOpen={isMobileMenuOpen} onClick={toggleMobileMenu} />
+      
+      <MobileMenu isOpen={isMobileMenuOpen}>
+        <CloseButton onClick={toggleMobileMenu}>×</CloseButton>
+        <MobileNavItem href="/" onClick={toggleMobileMenu}>Home</MobileNavItem>
+        <MobileNavItem href="/about" onClick={toggleMobileMenu}>About</MobileNavItem>
+        <MobileNavItem href="/room" onClick={toggleMobileMenu}>Rooms</MobileNavItem>
+        <MobileNavItem href="/tour" onClick={toggleMobileMenu}>Tour & Activities</MobileNavItem>
+        <MobileNavItem href="/gallery" onClick={toggleMobileMenu}>Gallery</MobileNavItem>
+        <MobileNavItem href="/contact" onClick={toggleMobileMenu}>Contact</MobileNavItem>
+      </MobileMenu>
+    </HeaderContainer>
   );
 };
 

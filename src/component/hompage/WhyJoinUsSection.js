@@ -1,161 +1,204 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+import { Check, ChevronRight } from 'lucide-react';
+import img1 from '../../assets/resort/garden3.jpg';
 
-const float = keyframes`
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0px); }
-`;
-
-const pulse = keyframes`
-  0% { transform: scale(1); opacity: 0.7; }
-  50% { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.7; }
-`;
-
-const CTASection = styled.section`
-  position: relative;
-  padding: 80px 20px;
-  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
-  overflow: hidden;
-`;
-
-const WaveTop = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  background: white;
-  clip-path: polygon(100% 0, 0 0, 0 100%);
-`;
-
-const WaveBottom = styled.div`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 50px;
-  background: white;
-  clip-path: polygon(100% 0, 100% 100%, 0 100%);
-`;
-
-const Content = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-`;
-
-const Title = styled.h2`
-  font-size: clamp(2rem, 4vw, 2.5rem);
-  color: #333;
-  margin-bottom: 20px;
-  font-weight: bold;
-`;
-
-const Subtitle = styled.p`
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  color: #555;
-  margin-bottom: 30px;
-`;
-
-const ButtonContainer = styled.div`
+const SectionContainer = styled.section`
+  padding: 40px 20px;
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-`;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
 
-const Button = styled.a`
-  display: inline-block;
-  padding: 12px 24px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(45deg);
-    transition: all 0.3s ease;
+  @media (min-width: 768px) {
+    padding: 50px 30px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
   }
 
-  &:hover::after {
-    left: 100%;
-    top: 100%;
+  @media (min-width: 1024px) {
+    padding: 60px 40px;
   }
 `;
 
-const PrimaryButton = styled(Button)`
-  background-color: #ff6b6b;
+const ContentContainer = styled.div`
+  width: 100%;
+  max-width: 600px;
+
+  @media (min-width: 768px) {
+    flex: 1;
+    min-width: 300px;
+  }
+`;
+
+const SectionTitle = styled.h2`
+  font-size: 0.9rem;
+  color: #ff6b35;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+
+const MainTitle = styled.h3`
+  font-size: 2rem;
+  color: #000000;
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+
+  @media (min-width: 768px) {
+    font-size: 2.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 2.5rem;
+  }
+`;
+
+const Description = styled.p`
+  font-size: 0.9rem;
+  color: #000000;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  font-family: 'Roboto', sans-serif;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+
+const FeatureList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+`;
+
+const FeatureItem = styled.li`
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #1a3c34;
+  font-family: 'Roboto', sans-serif;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+
+const CheckIcon = styled(Check)`
+  color: #ff6b35;
+  margin-right: 10px;
+`;
+
+const ReadMoreButton = styled.button`
+  background-color: #ff6b35;
   color: white;
   border: none;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  transition: background-color 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
 
   &:hover {
-    background-color: #ff5252;
+    background-color: #e55a2b;
+  }
+
+  @media (min-width: 768px) {
+    padding: 12px 24px;
+    font-size: 1rem;
   }
 `;
 
-const SecondaryButton = styled(Button)`
-  background-color: white;
-  color: #ff6b6b;
-  border: 2px solid #ff6b6b;
+const ImageContainer = styled.div`
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  margin-top: 30px;
 
-  &:hover {
-    background-color: #fff0f0;
+  @media (min-width: 768px) {
+    flex: 1;
+    min-width: 300px;
+    margin-top: 0;
   }
 `;
 
-const Decoration = styled.div`
-  position: absolute;
-  background-color: #ff6b6b;
-  opacity: 0.5;
-  border-radius: 50%;
-  animation: ${float} 6s ease-in-out infinite;
+const MainImage = styled.img`
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
-const CurvedLine = styled.div`
+const ExperienceBadge = styled.div`
   position: absolute;
-  border: 2px solid #ff6b6b;
-  border-color: #ff6b6b transparent transparent transparent;
-  border-radius: 50%/100px 100px 0 0;
-  opacity: 0.3;
+  bottom: -20px;
+  right: -20px;
+  background-color: #1a3c34;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: 'Playfair Display', serif;
+
+  @media (min-width: 768px) {
+    padding: 15px;
+    font-size: 1.1rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1.2rem;
+  }
 `;
 
-const CTAComponent = () => {
+const WhyChooseUs = () => {
   return (
-    <CTASection>
-      <WaveTop />
-      <Content>
-        <Title>Start Your Journey With Us Today</Title>
-        <Subtitle>
-          Experience a supportive and empowering living environment designed for ambitious young women. 
-          Take the first step towards your bright future by applying now or scheduling a visit to our hostel.
-        </Subtitle>
-
-      </Content>
-      <WaveBottom />
-      <Decoration style={{ top: '10%', left: '5%', width: '30px', height: '30px' }} />
-      <Decoration style={{ top: '70%', right: '10%', width: '20px', height: '20px' }} />
-      <Decoration style={{ top: '40%', left: '80%', width: '25px', height: '25px' }} />
-      <CurvedLine style={{ top: '-150px', left: '-100px', width: '300px', height: '300px' }} />
-      <CurvedLine style={{ bottom: '-150px', right: '-100px', width: '300px', height: '300px', transform: 'rotate(180deg)' }} />
-      <CurvedLine style={{ top: '20%', left: '-50px', width: '150px', height: '150px' }} />
-      <CurvedLine style={{ bottom: '20%', right: '-50px', width: '150px', height: '150px', transform: 'rotate(180deg)' }} />
-    </CTASection>
+    <SectionContainer>
+      <ContentContainer>
+        <SectionTitle>Why Choose Us</SectionTitle>
+        <MainTitle>Why Students Love Rise Institute For Medical Education?</MainTitle>
+        <Description>
+          Experience the perfect blend of academic support, comfort, and a nurturing environment.
+          Our prime location and exceptional services make us the ideal choice for medical students in Kathmandu.
+        </Description>
+        <FeatureList>
+          <FeatureItem><CheckIcon size={20} /> Prime location near medical institutions</FeatureItem>
+          <FeatureItem><CheckIcon size={20} /> 24/7 study areas and library</FeatureItem>
+          <FeatureItem><CheckIcon size={20} /> Mentorship programs</FeatureItem>
+          <FeatureItem><CheckIcon size={20} /> High-speed internet</FeatureItem>
+          <FeatureItem><CheckIcon size={20} /> Comfortable accommodations</FeatureItem>
+          <FeatureItem><CheckIcon size={20} /> Nutritious meal plans</FeatureItem>
+        </FeatureList>
+      </ContentContainer>
+      <ImageContainer>
+        <MainImage src={img1} alt="Rise Institute study area" />
+        <ExperienceBadge>
+          10+ Years<br />
+          of student support
+        </ExperienceBadge>
+      </ImageContainer>
+    </SectionContainer>
   );
 };
 
-export default CTAComponent;
+export default WhyChooseUs;

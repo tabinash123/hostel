@@ -1,19 +1,13 @@
-import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-import { MapPin, Phone, Mail, Facebook, Instagram, Linkedin, ChevronUp, Send } from 'lucide-react';
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin, Clock } from 'lucide-react';
 
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
-
-const FooterSection = styled.footer`
-  background-image: url('https://kcsrestaurantandhome.com/wp-content/uploads/2023/10/kc-property-11-1-1024x683.webp');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  padding: 50px 20px 30px;
-  font-family: 'Arial', sans-serif;
+const FooterWrapper = styled.footer`
+  background-color: #000000;
+  color: #ffffff;
+  padding: 50px 20px;
+  font-family: 'Poppins', Arial, sans-serif;
   position: relative;
 
   &::before {
@@ -28,7 +22,7 @@ const FooterSection = styled.footer`
   }
 `;
 
-const Content = styled.div`
+const FooterContent = styled.div`
   position: relative;
   z-index: 2;
   display: flex;
@@ -36,74 +30,67 @@ const Content = styled.div`
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  animation: ${fadeIn} 0.5s ease-out;
 
   @media (max-width: 768px) {
     flex-direction: column;
   }
 `;
 
-const Column = styled.div`
+const FooterSection = styled.div`
   flex: 1;
+  margin-bottom: 30px;
   min-width: 200px;
-  margin-bottom: 20px;
 
   @media (max-width: 768px) {
-    min-width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 `;
 
-const Title = styled.h3`
+const FooterTitle = styled.h3`
   font-size: 18px;
   margin-bottom: 15px;
   color: #ff6b6b;
 `;
 
-const LinkList = styled.ul`
-  list-style-type: none;
+const FooterList = styled.ul`
+  list-style: none;
   padding: 0;
+  margin: 0;
 `;
 
-const LinkItem = styled.li`
+const FooterListItem = styled.li`
   margin-bottom: 10px;
 `;
 
-const Link = styled.a`
-  color: white;
+const FooterLink = styled(Link)`
+  color: #e0e0e0;
   text-decoration: none;
   transition: color 0.3s ease;
-  font-size: 14px;
 
   &:hover {
-    color: #d4af37;
+    color: #ff6b6b;
   }
 `;
 
-const ContactInfo = styled.div`
-  margin-bottom: 20px;
-`;
-
-const ContactItem = styled.p`
+const ContactItem = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  font-size: 14px;
-
-  svg {
-    margin-right: 10px;
-    color: #ff6b6b;
-  }
 `;
 
-const SocialLinks = styled.div`
+const ContactIcon = styled.span`
+  margin-right: 10px;
+  color: #ff6b6b;
+`;
+
+const SocialIcons = styled.div`
   display: flex;
   gap: 15px;
-  margin-top: 20px;
+  margin-top: 15px;
 `;
 
-const SocialLink = styled.a`
-  color: white;
+const SocialIcon = styled.a`
+  color: #e0e0e0;
   transition: color 0.3s ease;
 
   &:hover {
@@ -111,134 +98,74 @@ const SocialLink = styled.a`
   }
 `;
 
-const NewsletterForm = styled.form`
-  display: flex;
-  margin-top: 15px;
-`;
-
-const NewsletterInput = styled.input`
-  padding: 10px;
-  border: none;
-  border-radius: 4px 0 0 4px;
-  flex-grow: 1;
-  font-size: 14px;
-`;
-
-const NewsletterButton = styled.button`
-  padding: 10px 15px;
-  background-color: #ff6b6b;
-  color: white;
-  border: none;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #b8860b;
-  }
-`;
-
-const Copyright = styled.p`
+const Copyright = styled.div`
   position: relative;
   z-index: 2;
   text-align: center;
   margin-top: 30px;
   padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 12px;
-`;
-
-const ScrollToTop = styled.button`
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #ff6b6b;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  z-index: 10;
-
-  &:hover {
-    background-color: #b8860b;
-  }
+  font-size: 14px;
 `;
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Newsletter signup:', email);
-    setEmail('');
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <FooterSection>
-      <Content>
-        <Column>
-          <Title>Quick Links</Title>
-          <LinkList>
-            <LinkItem><Link href="/">Home</Link></LinkItem>
-            <LinkItem><Link href="/about">About Us</Link></LinkItem>
-            <LinkItem><Link href="/room">Our Rooms</Link></LinkItem>
-            <LinkItem><Link href="contact">Contact</Link></LinkItem>
-          </LinkList>
-        </Column>
-        <Column>
-          <Title>Contact Us</Title>
-          <ContactInfo>
-            <ContactItem>
-              <MapPin size={16} />
-              Kamalpokhari, Kathmandu, Nepal
-            </ContactItem>
-            <ContactItem>
-              <Phone size={16} />
-             +977 01-4541165
-            </ContactItem>
-            <ContactItem>
-              <Mail size={16} />
+    <FooterWrapper>
+      <FooterContent>
+        <FooterSection>
+          <FooterTitle>Rise Institute</FooterTitle>
+          <p>Empowering future medical professionals with quality education and comprehensive training.</p>
+          <SocialIcons>
+            <SocialIcon href="https://facebook.com/rise.edu.np" target="_blank" rel="noopener noreferrer">
+              <Facebook size={20} />
+            </SocialIcon>
+            <SocialIcon href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <Instagram size={20} />
+            </SocialIcon>
+            <SocialIcon href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <Twitter size={20} />
+            </SocialIcon>
+            <SocialIcon href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              <Linkedin size={20} />
+            </SocialIcon>
+          </SocialIcons>
+        </FooterSection>
+
+        <FooterSection>
+          <FooterTitle>Quick Links</FooterTitle>
+          <FooterList>
+            <FooterListItem><FooterLink to="/">Home</FooterLink></FooterListItem>
+            <FooterListItem><FooterLink to="/room">Services</FooterLink></FooterListItem>
+            <FooterListItem><FooterLink to="/about">About Us</FooterLink></FooterListItem>
+            <FooterListItem><FooterLink to="/contact">Contact</FooterLink></FooterListItem>
+          </FooterList>
+        </FooterSection>
+
+        <FooterSection>
+          <FooterTitle>Contact Us</FooterTitle>
+          <ContactItem>
+            <ContactIcon><MapPin size={16} /></ContactIcon>
+            Kamalpokhari, Kathmandu, Nepal
+          </ContactItem>
+          <ContactItem>
+            <ContactIcon><Phone size={16} /></ContactIcon>
+            +977 01-4541165
+          </ContactItem>
+          <ContactItem>
+            <ContactIcon><Mail size={16} /></ContactIcon>
             risedoctors@gmail.com
-            </ContactItem>
-          </ContactInfo>
-          <SocialLinks>
-            <SocialLink href="https://www.facebook.com/rise.edu.np" aria-label="Facebook"><Facebook size={20} /></SocialLink>
-          </SocialLinks>
-        </Column>
-        <Column>
-          <Title>Newsletter</Title>
-          <p>Stay updated with our latest news and offers.</p>
-          <NewsletterForm onSubmit={handleSubmit}>
-            <NewsletterInput 
-              type="email" 
-              placeholder="Your email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <NewsletterButton type="submit">
-              <Send size={16} />
-            </NewsletterButton>
-          </NewsletterForm>
-        </Column>
-      </Content>
+          </ContactItem>
+          <ContactItem>
+            <ContactIcon><Clock size={16} /></ContactIcon>
+            Mon - Fri: 9:00 AM - 5:00 PM
+          </ContactItem>
+        </FooterSection>
+      </FooterContent>
+
       <Copyright>
-        Copyright © {new Date().getFullYear()} Rise Institute For Medical Education. All rights reserved.
+        © {new Date().getFullYear()} Rise Institute For Medical Education. All rights reserved.
       </Copyright>
-      <ScrollToTop onClick={scrollToTop}>
-        <ChevronUp size={20} />
-      </ScrollToTop>
-    </FooterSection>
+    </FooterWrapper>
   );
 };
 
