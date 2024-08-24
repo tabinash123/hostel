@@ -217,13 +217,13 @@ const Header = () => {
 
   return (
     <HeaderContainer isScrolled={isScrolled}>
-      <TopBar>
+      {/* <TopBar>
         <ContactInfo>
           <span>📞 +977 985-5057182</span>
           <span>✉️ info@echoadventureresort.com</span>
         </ContactInfo>
         <span>🐘 Discover the Wild Beauty of Chitwan</span>
-      </TopBar>
+      </TopBar> */}
       <HeaderContent>
         <Logo href="/">
           {/* <LogoImage src={logo} alt="Sauraha Resort Logo" /> */}
