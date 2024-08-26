@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import ima from '../../assets/rooms/2.jpg'
+import ima from '../../assets/gallary/11.jpg';
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -18,16 +18,7 @@ const HeroSection = styled.section`
   align-items: center;
   justify-content: center;
   padding: 20px;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 1;
+ 1;
   }
 
   /* Mobile styles (default) */
@@ -95,8 +86,8 @@ const Hero = () => {
   return (
     <HeroSection>
       <Content>
-        <Title>Room Pricing</Title>
-        <Subtitle>Experience luxury and comfort in the heart of nature. Discover the perfect blend of modern amenities and serene surroundings.</Subtitle>
+        <Title>Our Services</Title>
+        {/* <Subtitle>Experience luxury and comfort in the heart of nature. Discover the perfect blend of modern amenities and serene surroundings.</Subtitle> */}
       </Content>
     </HeroSection>
   );

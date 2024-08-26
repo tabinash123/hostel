@@ -1,22 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Calendar, Users, Award, Smile } from 'lucide-react';
-import imag from '../../assets/resort/hostel.jpg'
+import imag from '../../assets/hostel/profile2.jpg';
 
 const HeroSection = styled.section`
   position: relative;
-  height: 80vh;
   width: 100%;
   background-image: url('${imag}');
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
-  // padding: 0 5%;
-  
   color: white;
   overflow: hidden;
+
+  @media (max-width: 480px) {
+    height: 60vh;
+  }
+
+  @media (min-width: 481px) and (max-width: 1024px) {
+    height: 70vh;
+  }
+
+  @media (min-width: 1025px) {
+    height: 80vh;
+  }
 `;
+
 
 const Overlay = styled.div`
   position: absolute;
@@ -50,6 +60,11 @@ const Subtitle = styled.p`
   font-size: clamp(1rem, 2vw, 1.25rem);
   margin-bottom: 30px;
   opacity: 0.9;
+   @media (max-width: 720px) {
+    display: none;
+    height: 60vh;
+    
+  }
 `;
 
 const Highlight = styled.span`

@@ -119,15 +119,7 @@ const Footer = () => {
             <SocialIcon href="https://facebook.com/rise.edu.np" target="_blank" rel="noopener noreferrer">
               <Facebook size={20} />
             </SocialIcon>
-            <SocialIcon href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-              <Instagram size={20} />
-            </SocialIcon>
-            <SocialIcon href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <Twitter size={20} />
-            </SocialIcon>
-            <SocialIcon href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-              <Linkedin size={20} />
-            </SocialIcon>
+           
           </SocialIcons>
         </FooterSection>
 
@@ -135,7 +127,7 @@ const Footer = () => {
           <FooterTitle>Quick Links</FooterTitle>
           <FooterList>
             <FooterListItem><FooterLink to="/">Home</FooterLink></FooterListItem>
-            <FooterListItem><FooterLink to="/room">Services</FooterLink></FooterListItem>
+            <FooterListItem><FooterLink to="/service">Services</FooterLink></FooterListItem>
             <FooterListItem><FooterLink to="/about">About Us</FooterLink></FooterListItem>
             <FooterListItem><FooterLink to="/contact">Contact</FooterLink></FooterListItem>
           </FooterList>

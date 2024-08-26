@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Tv, Briefcase, Wifi, Lock, Building2 } from 'lucide-react';
-import img1 from "../../assets/rooms/delux.jpg";
-import img2 from "../../assets/rooms/family.jpg";
-import img3 from "../../assets/rooms/single.jpg";
+import img1 from "../../assets/facility/1.jpg";
+import img2 from "../../assets/facility/garden.PNG";
+import img3 from "../../assets/facility/garden.PNG";
 
 const Container = styled.div`
   display: flex;

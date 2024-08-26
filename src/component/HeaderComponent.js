@@ -232,7 +232,8 @@ const Header = () => {
         <Nav>
           <NavItem href="/">Home</NavItem>
           <NavItem href="/about">About</NavItem>
-          <NavItem href="/room">Services</NavItem>
+          <NavItem href="/service">Services</NavItem>
+          <NavItem href="/gallary">Gallary</NavItem>
           <NavItem href="/contact">Contact</NavItem>
         </Nav>
         <MobileMenuIcon onClick={toggleMobileMenu}>
@@ -247,9 +248,9 @@ const Header = () => {
         <CloseButton onClick={toggleMobileMenu}>×</CloseButton>
         <MobileNavItem href="/" onClick={toggleMobileMenu}>Home</MobileNavItem>
         <MobileNavItem href="/about" onClick={toggleMobileMenu}>About</MobileNavItem>
-        <MobileNavItem href="/room" onClick={toggleMobileMenu}>Rooms</MobileNavItem>
+        <MobileNavItem href="/service" onClick={toggleMobileMenu}>Rooms</MobileNavItem>
         <MobileNavItem href="/tour" onClick={toggleMobileMenu}>Tour & Activities</MobileNavItem>
-        <MobileNavItem href="/gallery" onClick={toggleMobileMenu}>Gallery</MobileNavItem>
+        <MobileNavItem href="/gallary" onClick={toggleMobileMenu}>Gallary</MobileNavItem>
         <MobileNavItem href="/contact" onClick={toggleMobileMenu}>Contact</MobileNavItem>
       </MobileMenu>
     </HeaderContainer>

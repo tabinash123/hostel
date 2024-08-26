@@ -12,7 +12,10 @@ import img7 from "../../assets/gallary/7.jpg";
 import img8 from "../../assets/gallary/8.jpg";
 import img9 from "../../assets/gallary/9.jpg";
 import img11 from "../../assets/gallary/11.jpg";
-import img12 from "../../assets/gallary/12.jpg";
+import img12 from  "../../assets/gallary/12.jpg";
+import img13 from  "../../assets/gallary/student3.jpg";
+import img14 from  "../../assets/gallary/student1.jpg";
+import img15 from  "../../assets/gallary/banner1.jpg";
 
 
 const GallerySection = styled.section`
@@ -174,6 +177,11 @@ const galleryImages = [
   { src: img7, alt: 'Hotel building at night' },
   { src: img8, alt: 'Hotel building at night' },
   { src: img9, alt: 'Hotel building at night' },
+  { src: img13, alt: 'Hotel building at night' },
+  { src: img11, alt: 'Hotel building at night' },
+  { src: img12, alt: 'Hotel building at night' },
+  { src: img13, alt: 'Hotel building at night' },
+  { src: img14, alt: 'Hotel building at night' },
 
 ];
 

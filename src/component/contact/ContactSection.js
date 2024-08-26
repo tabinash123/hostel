@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
-import imag from '../../assets/resort/hotel4.jpg'
+import imag from '../../assets/gallary/11.jpg';
 const PageWrapper = styled.div`
   background-color: #ffffff;
   min-height: 100vh;

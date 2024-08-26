@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Minus, Plus } from 'lucide-react';
-import img1 from '../../assets/resort/hotel2.jpg'
+import img1 from '../../assets/hostel/profile.jpg';
 
 const FAQSection = styled.section`
   padding: 50px 20px;
@@ -129,30 +129,28 @@ const Image = styled.img`
     height: 500px;
   }
 `;
-
 const FAQList = [
   {
-    question: "Does Rise Institute For Medical Education provide online resources for MBBS and MD entrance exam preparation?",
-    answer: "Yes, we offer a comprehensive digital learning platform that includes video lectures, practice tests, and interactive study materials for MBBS and MD entrance exams. Our online resources are regularly updated to align with the latest exam patterns and syllabus changes by the Nepal Medical Council."
+    question: "What are the accommodation options available at the hostel?",
+    answer: "We offer single, double, and triple occupancy rooms. All rooms are furnished with beds, desks, chairs, and wardrobes. We also have a limited number of en-suite rooms available on a first-come, first-served basis."
   },
   {
-    question: "How does the hostel support students in accessing telemedicine and virtual clinical rotations?",
-    answer: "We have high-speed fiber-optic internet throughout the hostel, including dedicated spaces for telemedicine sessions. We also provide access to virtual reality (VR) setups for simulated clinical experiences, helping students participate in virtual rotations with partner hospitals across Nepal and internationally."
+    question: "What study facilities are provided in the hostel?",
+    answer: "Our hostel features a large study hall open 24/7, multiple group discussion rooms, a well-stocked medical library, and high-speed Wi-Fi throughout the building. We also have dedicated quiet zones for individual study."
   },
   {
-    question: "What measures does the hostel take to ensure a healthy living environment, especially considering recent global health concerns?",
-    answer: "We maintain strict hygiene protocols, including regular sanitization of common areas, HEPA air purifiers in study rooms and lounges, and contactless sanitizer dispensers throughout the facility. We also have a tie-up with a nearby health clinic for quick medical assistance and offer mental health support services."
+    question: "Are meals provided at the hostel?",
+    answer: "Yes, we provide three meals a day (breakfast, lunch, and dinner) in our cafeteria. Our menu includes a mix of Nepali and international cuisines, with vegetarian options always available. We can also cater to specific dietary requirements upon request."
   },
   {
-    question: "Are there opportunities for research collaboration or internships with local medical institutions?",
-    answer: "Absolutely! We have partnerships with several leading hospitals and research institutions in Kathmandu. Our career development office helps students find and apply for research assistant positions, internships, and volunteer opportunities. We also organize regular workshops on research methodologies and scientific paper writing."
+    question: "What security measures are in place at the hostel?",
+    answer: "We have 24/7 security personnel, CCTV coverage of all common areas, and a biometric entry system for resident access. All visitors must sign in at the reception desk, and we have a strict curfew policy for non-residents."
   },
   {
-    question: "How does the hostel accommodate the diverse dietary needs of international students?",
-    answer: "Our cafeteria offers a variety of meal options, including vegetarian, vegan, halal, and gluten-free choices. We have a rotating menu that features both Nepali and international cuisines. Students can also access shared kitchen facilities to prepare their own meals if they prefer. We regularly collect feedback to ensure our menu meets the diverse needs of our student community."
+    question: "Are there any recreational facilities available?",
+    answer: "Yes, we have a fitness center, a TV room, indoor game facilities (carrom, chess, table tennis), and a small outdoor garden area. We also organize regular social events and stress-relief activities for our residents."
   }
 ];
-
 
 const FAQComponent = () => {
   const [openIndex, setOpenIndex] = useState(0);

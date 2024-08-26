@@ -3,10 +3,20 @@ import styled from 'styled-components';
 import { Play, Pause } from 'lucide-react';
 import video from '../../assets/hostel.mp4';
 
+
 const VideoSection = styled.section`
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 40vh; // Mobile default
+
+  @media (min-width: 768px) {
+    height: 50vh; // Tablet
+  }
+
+  @media (min-width: 1024px) {
+    height: 70vh; // Desktop
+  }
+
   overflow: hidden;
 `;
 
@@ -144,17 +154,10 @@ const Video = () => {
     <VideoSection>
       <VideoBackground ref={videoRef} loop muted playsInline>
         <source src={video} type="video/mp4" />
-        Your browser does not support the video tag.
       </VideoBackground>
       <Overlay />
       <Content>
-        <Title>Welcome to Rise Institute For Medical Education</Title>
-        <Subtitle>Your Home Away From Home in Kathmandu</Subtitle>
-        <Description>
-          Experience the perfect blend of comfort and education at our premier hostel in Kathmandu.
-          Designed for medical students, we offer a nurturing environment, state-of-the-art facilities,
-          and a supportive community to help you excel in your studies and personal growth.
-        </Description>
+        
         <PlayButton onClick={togglePlay}>
           {isPlaying ? <Pause size={24} color="white" /> : <Play size={24} color="white" />}
         </PlayButton>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Check, ChevronRight } from 'lucide-react';
-import img1 from '../../assets/resort/garden3.jpg';
+import img1 from '../../assets/hostel/studentgroup1.jpg';
 
 const SectionContainer = styled.section`
   padding: 40px 20px;
@@ -16,7 +16,8 @@ const SectionContainer = styled.section`
     padding: 50px 30px;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center; // Changed from flex-start to center
+    min-height: 600px; // Added to ensure enough vertical space
   }
 
   @media (min-width: 1024px) {
@@ -138,6 +139,13 @@ const ImageContainer = styled.div`
     flex: 1;
     min-width: 300px;
     margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 767px) {
+    display: none;
   }
 `;
 
@@ -147,6 +155,7 @@ const MainImage = styled.img`
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
+
 
 const ExperienceBadge = styled.div`
   position: absolute;
@@ -192,10 +201,7 @@ const WhyChooseUs = () => {
       </ContentContainer>
       <ImageContainer>
         <MainImage src={img1} alt="Rise Institute study area" />
-        <ExperienceBadge>
-          10+ Years<br />
-          of student support
-        </ExperienceBadge>
+        
       </ImageContainer>
     </SectionContainer>
   );

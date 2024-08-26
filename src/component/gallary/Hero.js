@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import ima from '../../assets/gallary/9.jpg'
+import ima from '../../assets/gallary/studentgroup1.jpg'
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(20px); }
@@ -19,16 +19,6 @@ const HeroSection = styled.section`
   justify-content: center;
   padding: 20px;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-  }
 
   /* Mobile styles (default) */
   @media (max-width: 767px) {
