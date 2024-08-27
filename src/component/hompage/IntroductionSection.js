@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import hostelImage from '../../assets/hostel/hostel2.jpg'
+import hostelImage from '../../assets/hostel/profile.jpg'
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(20px); }

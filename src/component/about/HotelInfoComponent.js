@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import img1 from '../../assets/hostel/hostel2.jpg'
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(20px); }
@@ -23,47 +22,13 @@ const IntroSection = styled.section`
 `;
 
 const Container = styled.div`
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    align-items: center;
-    gap: 50px;
-  }
-
-  @media (min-width: 1024px) {
-    gap: 60px;
-  }
-`;
-
-const ImageContainer = styled.div`
-  display: none;
-
-  @media (min-width: 768px) {
-    display: block;
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  }
-`;
-
-const MainImage = styled.img`
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.3s ease;
-
 `;
 
 const Content = styled.div`
-  flex: 1;
+  text-align: center;
 `;
 
 const Title = styled.h1`
@@ -112,9 +77,6 @@ const AboutUsIntro = () => {
   return (
     <IntroSection>
       <Container>
-        <ImageContainer>
-          <MainImage src={img1} alt="Rise Institute For Medical Education Main Building" />
-        </ImageContainer>
         <Content>
           <Title>Welcome to Rise Institute For Medical Education</Title>
           <Subtitle>Your Home Away From Home in Kathmandu</Subtitle>
