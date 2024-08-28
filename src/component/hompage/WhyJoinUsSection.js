@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Check, ChevronRight } from 'lucide-react';
-import img1 from '../../assets/hostel/studentgroup1.jpg';
+// import img1 from '../../assets/hostel/studentgroup1.jpg';
 
 const SectionContainer = styled.section`
   padding: 40px 20px;
@@ -200,7 +200,7 @@ const WhyChooseUs = () => {
         </FeatureList>
       </ContentContainer>
       <ImageContainer>
-        <MainImage src={img1} alt="Rise Institute study area" />
+        {/* <MainImage src={img1} alt="Rise Institute study area" /> */}
         
       </ImageContainer>
     </SectionContainer>
