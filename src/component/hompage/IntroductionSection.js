@@ -98,26 +98,37 @@ const HighlightText = styled.span`
 
 const ImageWrapper = styled.div`
   flex: 1;
-  max-width: 500px;
+  width: 500px;
   height: 500px;
   animation: ${fadeIn} 1s ease-out 0.3s both;
-  @media (max-width: 1024px) {
-    max-width: 40%;
-    height: auto;
+  
+  @media (max-width: 1440px) { // Large desktop
+    width: 450px;
+    height: 450px;
   }
-  @media (max-width: 968px) {
-  display: none;
-    max-width: 100%;
-    height: auto;
+  
+  @media (max-width: 1024px) { // Small desktop/laptop
+    width: 400px;
+    height: 400px;
   }
+  
+  @media (max-width: 768px) { // Tablet
+    width: 100%;
+    // height: 350px;
+  }
+  
+  // @media (max-width: 480px) { // Mobile
+  //   width: 300px;
+  //   height: 300px;
+  // }
 `;
 
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-
 `;
+
 
 const IntroductionComponent = () => {
   return (
@@ -127,7 +138,7 @@ const IntroductionComponent = () => {
         <Subtitle>A Home Away From Home that Makes A Difference</Subtitle>
         <Underline />
         <Description>
-         Rise Institute For Medical Education is the premier accommodation for students in Kathmandu. Our residents have confidence in us because we provide a safe, comfortable, and nurturing environment along with transparency. Our hostel management strategy is unique and student-oriented.
+         Rise Library and Hostel is the premier accommodation for students in Kathmandu. Our residents have confidence in us because we provide a safe, comfortable, and nurturing environment along with transparency. Our hostel management strategy is unique and student-oriented.
         </Description>
         <Description>
           We offer a range of amenities, including <HighlightText>comfortable rooms</HighlightText>, <HighlightText>nutritious meals</HighlightText>, <HighlightText>study areas</HighlightText>, and <HighlightText>recreational facilities</HighlightText>. Our expert staff helps students thrive academically and personally.

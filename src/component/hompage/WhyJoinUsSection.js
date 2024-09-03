@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Check, ChevronRight } from 'lucide-react';
-// import img1 from '../../assets/hostel/studentgroup1.jpg';
+import img1 from '../../assets/gallary/studentgroup1.jpg';
 
 const SectionContainer = styled.section`
   padding: 40px 20px;
@@ -104,58 +104,39 @@ const CheckIcon = styled(Check)`
   margin-right: 10px;
 `;
 
-const ReadMoreButton = styled.button`
-  background-color: #ff6b35;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 0.9rem;
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  margin-top: 30px;
-  transition: background-color 0.3s ease;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 600;
-
-  &:hover {
-    background-color: #e55a2b;
-  }
-
-  @media (min-width: 768px) {
-    padding: 12px 24px;
-    font-size: 1rem;
-  }
-`;
-
 const ImageContainer = styled.div`
-  width: 100%;
-  max-width: 500px;
   position: relative;
+  width: 500px;
+  height: 500px;
   margin-top: 30px;
 
-  @media (min-width: 768px) {
-    flex: 1;
-    min-width: 300px;
-    margin-top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  @media (max-width: 1440px) { // Large desktop
+    width: 450px;
+    height: 450px;
   }
 
-  @media (max-width: 767px) {
-    display: none;
+  @media (max-width: 1024px) { // Small desktop/laptop
+    width: 400px;
+    height: 400px;
   }
+
+  @media (max-width: 768px) { // Tablet
+    width: 100%;
+  }
+
+  // @media (max-width: 480px) { // Mobile
+  
+  //   width: 300px;
+  //   height: 300px;
+  //   margin: 30px auto 0;
+  // }
 `;
 
 const MainImage = styled.img`
   width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  object-fit: cover;
 `;
-
 
 const ExperienceBadge = styled.div`
   position: absolute;
@@ -185,7 +166,7 @@ const WhyChooseUs = () => {
     <SectionContainer>
       <ContentContainer>
         <SectionTitle>Why Choose Us</SectionTitle>
-        <MainTitle>Why Students Love Rise Institute For Medical Education?</MainTitle>
+        <MainTitle>Why Students Love Rise Library and Hostel?</MainTitle>
         <Description>
           Experience the perfect blend of academic support, comfort, and a nurturing environment.
           Our prime location and exceptional services make us the ideal choice for medical students in Kathmandu.
@@ -200,7 +181,7 @@ const WhyChooseUs = () => {
         </FeatureList>
       </ContentContainer>
       <ImageContainer>
-        {/* <MainImage src={img1} alt="Rise Institute study area" /> */}
+        <MainImage src={img1} alt="Rise Institute study area" />
         
       </ImageContainer>
     </SectionContainer>

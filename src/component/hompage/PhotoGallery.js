@@ -1,29 +1,21 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
-import { Image as ImageIcon, X } from 'lucide-react';
+import { Image as ImageIcon, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import img1 from "../../assets/gallary/1.jpg";
 import img2 from "../../assets/gallary/2.jpg";
-import img3 from "../../assets/resort/garden2.jpg";
-
-import img7 from "../../assets/gallary/5.jpg";
-import img8 from "../../assets/gallary/7.jpg";
+import img3 from "../../assets/gallary/3.jpg";
+import img4 from "../../assets/gallary/4.jpg";
+import img5 from "../../assets/gallary/5.jpg";
+import img6 from "../../assets/gallary/6.jpg";
+import img7 from "../../assets/gallary/7.jpg";
+import img8 from "../../assets/gallary/8.jpg";
 import img9 from "../../assets/gallary/9.jpg";
-import img10 from "../../assets/gallary/12.jpg";
-import img11 from "../../assets/gallary/11.jpg";
-import img12 from "../../assets/gallary/1.jpg";
-import img13 from "../../assets/gallary/3.jpg";
+
 
 const GallerySection = styled.section`
-  padding: 1rem;
-
-  @media (min-width: 768px) {
-    padding: 1.5rem;
-  }
-
-  @media (min-width: 1024px) {
-    padding: 2rem;
-  }
+  padding: 2rem 1rem;
+  background-color: #f5f5f5;
 `;
 
 const GalleryContainer = styled.div`
@@ -31,37 +23,36 @@ const GalleryContainer = styled.div`
   margin: 0 auto;
 `;
 
-const GalleryTitle = styled.h2`
-  font-size: 1.5rem;
-  color: #000000;
+const IntroSection = styled.div`
+  text-align: center;
+  margin-bottom: 3rem;
+`;
+
+const IntroTitle = styled.h2`
+  font-size: 2.5rem;
+  color: #2C3E50;
   margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
+  font-weight: 600;
+  line-height: 1.3;
 
-  @media (min-width: 768px) {
-    font-size: 1.75rem;
-    margin-bottom: 1.25rem;
-  }
-
-  @media (min-width: 1024px) {
+  @media (max-width: 768px) {
     font-size: 2rem;
-    margin-bottom: 1.5rem;
   }
 `;
 
 const GalleryGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 
-  @media (min-width: 768px) {
+  @media (max-width: 1024px) {
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
   }
 
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+      gap: 5px;
+
   }
 `;
 
@@ -69,14 +60,17 @@ const GalleryImageWrapper = styled.div`
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
-
+  aspect-ratio: 3 / 2;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
 const GalleryImage = styled.img`
   width: 100%;
   height: 100%;
-  // object-fit: cover;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+
 `;
 
 const ImageOverlay = styled.div`
@@ -123,55 +117,76 @@ const LightboxImage = styled.img`
   object-fit: contain;
 `;
 
-const CloseButton = styled.button`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+const LightboxButton = styled.button`
   background: none;
   border: none;
   color: white;
   cursor: pointer;
   font-size: 2rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
+const CloseButton = styled(LightboxButton)`
+  top: 1rem;
+  right: 1rem;
+`;
+
+const PrevButton = styled(LightboxButton)`
+  left: 1rem;
+`;
+
+const NextButton = styled(LightboxButton)`
+  right: 1rem;
 `;
 
 const galleryImages = [
   { src: img1, alt: 'Hotel exterior at night' },
   { src: img2, alt: 'Luxurious bedroom' },
   { src: img3, alt: 'Swimming pool at night' },
-
+  { src: img4, alt: 'Garden gazebo' },
+  { src: img5, alt: 'Hotel pathway' },
   { src: img7, alt: 'Hotel building at night' },
   { src: img8, alt: 'Hotel building at night' },
   { src: img9, alt: 'Hotel building at night' },
-  { src: img10, alt: 'Hotel building at night' },
-  { src: img11, alt: 'Hotel building at night' },
-  { src: img12, alt: 'Hotel building at night' },
-  { src: img13, alt: 'Hotel building at night' },
+
 ];
 
 const Gallery = () => {
-  const [lightboxImage, setLightboxImage] = useState(null);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
-  const openLightbox = useCallback((image) => {
-    setLightboxImage(image);
+  const openLightbox = useCallback((index) => {
+    setLightboxIndex(index);
   }, []);
 
   const closeLightbox = useCallback(() => {
-    setLightboxImage(null);
+    setLightboxIndex(null);
+  }, []);
+
+  const navigateLightbox = useCallback((direction) => {
+    setLightboxIndex((prevIndex) => {
+      const newIndex = prevIndex + direction;
+      if (newIndex < 0) return galleryImages.length - 1;
+      if (newIndex >= galleryImages.length) return 0;
+      return newIndex;
+    });
   }, []);
 
   return (
     <GallerySection>
       <GalleryContainer>
-        <GalleryTitle>
-          <ImageIcon size={24} color="#ff6b6b" style={{ marginRight: '0.5rem' }} />
-          Gallery
-        </GalleryTitle>
+        <IntroSection>
+          <IntroTitle>  Our Gallery</IntroTitle>
+
+        </IntroSection>
+
         <GalleryGrid>
           {galleryImages.map((image, index) => (
             <GalleryImageWrapper 
               key={index}
-              onClick={() => openLightbox(image)}
-              onKeyDown={(e) => e.key === 'Enter' && openLightbox(image)}
+              onClick={() => openLightbox(index)}
+              onKeyDown={(e) => e.key === 'Enter' && openLightbox(index)}
               tabIndex={0}
               role="button"
               aria-label={`View larger image of ${image.alt}`}
@@ -186,12 +201,22 @@ const Gallery = () => {
             </GalleryImageWrapper>
           ))}
         </GalleryGrid>
-        {lightboxImage && (
+        {lightboxIndex !== null && (
           <LightboxOverlay onClick={closeLightbox}>
-            <LightboxImage src={lightboxImage.src} alt={lightboxImage.alt} onClick={(e) => e.stopPropagation()} />
+            <LightboxImage 
+              src={galleryImages[lightboxIndex].src} 
+              alt={galleryImages[lightboxIndex].alt} 
+              onClick={(e) => e.stopPropagation()} 
+            />
             <CloseButton onClick={closeLightbox} aria-label="Close lightbox">
               <X size={32} />
             </CloseButton>
+            <PrevButton onClick={() => navigateLightbox(-1)} aria-label="Previous image">
+              <ChevronLeft size={32} />
+            </PrevButton>
+            <NextButton onClick={() => navigateLightbox(1)} aria-label="Next image">
+              <ChevronRight size={32} />
+            </NextButton>
           </LightboxOverlay>
         )}
       </GalleryContainer>

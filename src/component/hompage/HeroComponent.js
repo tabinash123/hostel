@@ -134,10 +134,10 @@ const Hero = () => {
     <HeroSection>
       <Overlay />
       <Content>
-        <Title>Empower Your Education at <Highlight>Rise Institute For Medical Education</Highlight></Title>
+        <Title>Empower Your Education at <Highlight>Rise Library and Hostel</Highlight></Title>
         <Subtitle>Experience a nurturing environment that fosters academic excellence and personal growth in the heart of Kathmandu.</Subtitle>
 
-        <Stats>
+        {/* <Stats>
           <StatItem>
             <StatValue>10+</StatValue>
             <StatLabel>Years of Excellence</StatLabel>
@@ -154,7 +154,7 @@ const Hero = () => {
             <StatValue>100%</StatValue>
             <StatLabel>Safety Record</StatLabel>
           </StatItem>
-        </Stats>
+        </Stats> */}
       </Content>
     </HeroSection>
   );

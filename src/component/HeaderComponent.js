@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-// import logo from '../assets/logo.jpg'; // Ensure this path is correct
+import { X, Menu, Phone, Mail, MapPin } from 'lucide-react';
+import logo from '../assets/logo.png'; // Ensure this path is correct
 
 const HeaderContainer = styled.header`
   font-family: 'Poppins', sans-serif;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
   position: ${props => props.isScrolled ? 'sticky' : 'relative'};
   top: 0;
   z-index: 1000;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.12);
+  }
 `;
 
 const TopBar = styled.div`
@@ -21,10 +27,7 @@ const TopBar = styled.div`
   align-items: center;
 
   @media (max-width: 768px) {
-  display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 5%;
+    display: none;
   }
 `;
 
@@ -43,7 +46,7 @@ const HeaderContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 5%;
+  padding: 10px 5%;
   max-width: 1200px;
   margin: 0 auto;
 
@@ -66,10 +69,10 @@ const Logo = styled.a`
 `;
 
 const LogoImage = styled.img`
-  height: 60px;
+  height: 70px;
   width: auto;
   margin-right: 10px;
-  border-radius:10px;
+  border-radius: 10px;
 
   @media (max-width: 768px) {
     height: 80px;
@@ -88,8 +91,8 @@ const Nav = styled.nav`
 const NavItem = styled.a`
   color: #000000;
   text-decoration: none;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 700;
   text-transform: uppercase;
   padding: 5px 0;
   transition: all 0.3s ease;
@@ -139,7 +142,7 @@ const MobileMenuOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: ${props => props.isOpen ? 'block' : 'none'};
   opacity: ${props => props.isOpen ? 1 : 0};
   transition: opacity 0.3s ease;
@@ -150,28 +153,62 @@ const MobileMenu = styled.div`
   position: fixed;
   top: 0;
   right: ${props => props.isOpen ? '0' : '-100%'};
-  width: 80%;
-  max-width: 300px;
+  width: 60%;
+  max-width: 350px;
   height: 100vh;
   background-color: #f4f1e8;
-  padding: 80px 20px 20px;
+  padding: 20px;
   transition: right 0.3s ease;
   overflow-y: auto;
   z-index: 1000;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
+`;
+
+const MobileMenuHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+const MobileLogo = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #000000;
+`;
+
+const MobileLogoImage = styled.img`
+  height: 40px;
+  width: auto;
+  margin-right: 10px;
+  border-radius: 5px;
+`;
+
+const CloseButton = styled.button`
+  background: none;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  padding: 5px;
+`;
+
+const MobileNavItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 const MobileNavItem = styled(NavItem)`
   display: block;
-  padding: 15px 0;
+  padding: 15px;
   font-size: 18px;
   border-bottom: 1px solid #ddd;
-  text-align: center;
+  text-align: left;
+  transition: background-color 0.3s ease;
 
   &:last-child {
     border-bottom: none;
@@ -181,22 +218,41 @@ const MobileNavItem = styled(NavItem)`
     display: none;
   }
 
-  &:hover {
+  &:hover, &:focus {
     background-color: rgba(255, 152, 0, 0.1);
   }
 `;
 
+const MobileContactInfo = styled.div`
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
 
+const ContactItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #333;
+`;
 
-const CloseButton = styled.button`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: none;
-  border: none;
+const SocialLinks = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+`;
+
+const SocialLink = styled.a`
+  color: #333;
   font-size: 24px;
-  color: #000000;
-  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #ff9800;
+  }
 `;
 
 const Header = () => {
@@ -217,41 +273,67 @@ const Header = () => {
 
   return (
     <HeaderContainer isScrolled={isScrolled}>
-      {/* <TopBar>
+      <TopBar>
         <ContactInfo>
-          <span>📞 +977 985-5057182</span>
-          <span>✉️ info@echoadventureresort.com</span>
+          <span>📞 +977 01-4541165</span>
+          <span>✉️ risedoctors@gmail.com</span>
         </ContactInfo>
-        <span>🐘 Discover the Wild Beauty of Chitwan</span>
-      </TopBar> */}
+        <span>🎓 Empowering Future Medical Professionals</span>
+      </TopBar>
       <HeaderContent>
         <Logo href="/">
-          {/* <LogoImage src={logo} alt="Sauraha Resort Logo" /> */}
-          Rise Institute
+          <LogoImage src={logo} alt="Rise Institute Logo" />
+       
         </Logo>
         <Nav>
           <NavItem href="/">Home</NavItem>
           <NavItem href="/about">About</NavItem>
           <NavItem href="/service">Services</NavItem>
-          <NavItem href="/gallary">Gallary</NavItem>
+          <NavItem href="/gallary">Gallery</NavItem>
           <NavItem href="/contact">Contact</NavItem>
         </Nav>
         <MobileMenuIcon onClick={toggleMobileMenu}>
-          ☰
+          {isMobileMenuOpen? (<></>):(<Menu size={24} />)}
         </MobileMenuIcon>
       </HeaderContent>
   
-      
       <MobileMenuOverlay isOpen={isMobileMenuOpen} onClick={toggleMobileMenu} />
       
       <MobileMenu isOpen={isMobileMenuOpen}>
-        <CloseButton onClick={toggleMobileMenu}>×</CloseButton>
-        <MobileNavItem href="/" onClick={toggleMobileMenu}>Home</MobileNavItem>
-        <MobileNavItem href="/about" onClick={toggleMobileMenu}>About</MobileNavItem>
-        <MobileNavItem href="/service" onClick={toggleMobileMenu}>Rooms</MobileNavItem>
-        <MobileNavItem href="/tour" onClick={toggleMobileMenu}>Tour & Activities</MobileNavItem>
-        <MobileNavItem href="/gallary" onClick={toggleMobileMenu}>Gallary</MobileNavItem>
-        <MobileNavItem href="/contact" onClick={toggleMobileMenu}>Contact</MobileNavItem>
+        <MobileMenuHeader>
+          <MobileLogo>
+            {/* <MobileLogoImage src={logo} alt="Rise Institute Logo" /> */}
+     
+          </MobileLogo>
+          <CloseButton onClick={toggleMobileMenu}>
+            <X size={24} />
+          </CloseButton>
+        </MobileMenuHeader>
+        
+        <MobileNavItems>
+          <MobileNavItem href="/" onClick={toggleMobileMenu}>Home</MobileNavItem>
+          <MobileNavItem href="/about" onClick={toggleMobileMenu}>About</MobileNavItem>
+          <MobileNavItem href="/service" onClick={toggleMobileMenu}>Services</MobileNavItem>
+          <MobileNavItem href="/gallary" onClick={toggleMobileMenu}>Gallery</MobileNavItem>
+          <MobileNavItem href="/contact" onClick={toggleMobileMenu}>Contact</MobileNavItem>
+        </MobileNavItems>
+
+        <MobileContactInfo>
+          <ContactItem>
+            <Phone size={18} />
+            +977 01-4541165
+
+          </ContactItem>
+          <ContactItem>
+            <Mail size={18} />
+            risedoctors@gmail.com
+          </ContactItem>
+          <ContactItem>
+            <MapPin size={18} />
+            Kathmandu, Nepal
+          </ContactItem>
+        </MobileContactInfo>
+
       </MobileMenu>
     </HeaderContainer>
   );

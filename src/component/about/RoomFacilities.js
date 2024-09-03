@@ -1,18 +1,24 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Tv, Briefcase, Wifi, Lock, Building2 } from 'lucide-react';
+import { BookOpen, Wifi, Users, Bed } from 'lucide-react';
 import img1 from "../../assets/facility/1.jpg";
-import img2 from "../../assets/facility/garden.PNG";
-import img3 from "../../assets/facility/garden.PNG";
+
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: 'Arial', sans-serif;
-  background-color: #fff;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+  padding: 40px 20px;
+  animation: ${fadeIn} 0.8s ease-out;
 
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     flex-direction: row;
+    padding: 80px 40px;
   }
 `;
 
@@ -20,144 +26,109 @@ const LeftSection = styled.div`
   flex: 1;
   padding: 20px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     flex: 3;
-    padding: 40px;
+    padding: 0 40px 0 0;
   }
 `;
 
 const RightSection = styled.div`
   flex: 1;
-  height: 200px;
-  position: relative;
-  overflow: hidden;
-  margin: auto 0px;
+  margin-top: 40px;
+  display: flex;
+align-items: center;
 
-  @media (min-width: 576px) {
-    height: 250px;
-  }
-
-  @media (min-width: 768px) {
+  @media (max-width: 748px) {
+  display:none;
     flex: 2;
-    height: 300px;
-  }
-
-  @media (min-width: 992px) {
-    height: 400px;
+    margin: auto 0;
   }
 `;
 
 const Header = styled.h6`
-  font-size: 12px;
-  color: #333;
+  font-size: 14px;
+  color: #ff6b6b;
   margin-bottom: 10px;
   letter-spacing: 2px;
-
-  @media (min-width: 768px) {
-    font-size: 14px;
-  }
+  text-transform: uppercase;
 `;
 
 const Title = styled.h2`
-  font-size: 28px;
+  font-size: 32px;
   color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   font-weight: bold;
 
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     font-size: 42px;
-    margin-bottom: 30px;
   }
 `;
 
 const FacilitiesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-
-  @media (min-width: 992px) {
-    gap: 30px;
-  }
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
 `;
 
 const FacilityItem = styled.div`
   display: flex;
   align-items: flex-start;
+  background-color: #fff;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
 `;
 
 const IconWrapper = styled.div`
   margin-right: 15px;
-  color: #A17A0B;
+  color: #ff6b6b;
+  background-color: #fff0f0;
+  padding: 10px;
+  border-radius: 50%;
 `;
 
-const FacilityContent = styled.div``;
+const FacilityContent = styled.div`
+  flex: 1;
+`;
 
 const FacilityTitle = styled.h3`
-  font-size: 16px;
+  font-size: 18px;
   color: #333;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   font-weight: 600;
-
-  @media (min-width: 768px) {
-    font-size: 18px;
-  }
 `;
 
 const FacilityDescription = styled.p`
   font-size: 14px;
   color: #666;
-  line-height: 1.4;
+  line-height: 1.6;
 `;
 
-const ImageContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 200px 200px;
-  gap: 10px;
-  margin-top: 20px;
-
-  @media (min-width: 768px) {
-    grid-template-rows: 300px 300px;
-    margin-top: 30px;
-  }
-
-  @media (min-width: 1024px) {
-    flex: 1;
-    grid-template-rows: 250px 250px;
-    height: 500px;
-    margin-top: 0;
-    order: -1; // Move back to the left on desktop
-  }
-`;
-
-const LargeImage = styled.img`
-  grid-row: span 2;
+const SingleImage = styled.img`
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
-const SmallImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
-
-const RoomFacilities = () => {
+const StudentHostelFacilities = () => {
   const facilities = [
-    { icon: Tv, title: 'Cable TV' },
-    { icon: Briefcase, title: 'Work Desk' },
-    { icon: Wifi, title: 'Free Wifi' },
-    { icon: Lock, title: 'Safebox' },
-    { icon: Building2, title: 'Balcony' },
-    { icon: Building2, title: 'City View' },
+    { icon: Bed, title: 'Comfortable Rooms', description: 'Well-furnished rooms with individual study spaces for focused preparation.' },
+    { icon: BookOpen, title: 'Study Areas', description: 'Quiet, well-lit study rooms available 24/7 for uninterrupted exam preparation.' },
+    { icon: Wifi, title: 'High-Speed Internet', description: 'Reliable Wi-Fi throughout the hostel for online resources and mock tests.' },
+    { icon: Users, title: 'Group Study Rooms', description: 'Dedicated spaces for collaborative learning and peer discussions.' },
   ];
 
   return (
     <Container>
       <LeftSection>
-        <Header>ROOMS & SUITES</Header>
-        <Title>Room Facilities</Title>
+        <Header>Hostel Amenities</Header>
+        <Title>Comfortable Living for Focused Study</Title>
         <FacilitiesGrid>
           {facilities.map((facility, index) => (
             <FacilityItem key={index}>
@@ -167,7 +138,7 @@ const RoomFacilities = () => {
               <FacilityContent>
                 <FacilityTitle>{facility.title}</FacilityTitle>
                 <FacilityDescription>
-                  Sunt dolor aliquip consectetur laborum incididunt tempor.
+                  {facility.description}
                 </FacilityDescription>
               </FacilityContent>
             </FacilityItem>
@@ -175,14 +146,10 @@ const RoomFacilities = () => {
         </FacilitiesGrid>
       </LeftSection>
       <RightSection>
-        <ImageContainer>
-          <LargeImage src={img1} alt="Hotel room 1" />
-          <SmallImage src={img2} alt="Hotel room 2" />
-          <SmallImage src={img3} alt="Hotel room 3" />
-        </ImageContainer>
+        <SingleImage src={img1} alt="Spacious Study Room" />
       </RightSection>
     </Container>
   );
 };
 
-export default RoomFacilities;
+export default StudentHostelFacilities;

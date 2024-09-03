@@ -19,7 +19,7 @@ import img15 from  "../../assets/gallary/banner1.jpg";
 
 
 const GallerySection = styled.section`
-  padding: 4rem 2rem;
+  padding: 2rem 1rem;
   background-color: #f5f5f5;
 `;
 
@@ -69,14 +69,16 @@ const GalleryTitle = styled.h3`
 const GalleryGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: 10px;
 
   @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+      gap: 5px;
+
   }
 `;
 
@@ -209,17 +211,13 @@ const Gallery = () => {
     <GallerySection>
       <GalleryContainer>
         <IntroSection>
-          <IntroTitle>Explore Our Visual Journey</IntroTitle>
+          <IntroTitle>  Our Gallery</IntroTitle>
           <IntroDescription>
-            Immerse yourself in the beauty and elegance of our hotel through our carefully curated gallery. 
+            Immerse yourself in the beauty and elegance of our hostel through our carefully curated gallery. 
            
           </IntroDescription>
         </IntroSection>
 
-        <GalleryTitle>
-          <ImageIcon size={32} color="#8B4513" style={{ verticalAlign: 'middle', marginRight: '0.5rem' }} />
-          Our Gallery
-        </GalleryTitle>
         <GalleryGrid>
           {galleryImages.map((image, index) => (
             <GalleryImageWrapper 

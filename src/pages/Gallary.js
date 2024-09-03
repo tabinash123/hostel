@@ -5,7 +5,7 @@ import PhotoGallery from './../component/gallary/PhotoGallery';
 const Gallary = () => {
   return (
       <div>
-      <Hero />
+      {/* <Hero /> */}
       <PhotoGallery />
     </div>
   )
