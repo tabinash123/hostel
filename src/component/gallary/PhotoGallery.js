@@ -1,7 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { Image as ImageIcon, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
 
+// Import your images here
 import img1 from "../../assets/gallary/1.jpg";
 import img2 from "../../assets/gallary/2.jpg";
 import img3 from "../../assets/gallary/3.jpg";
@@ -12,11 +13,10 @@ import img7 from "../../assets/gallary/7.jpg";
 import img8 from "../../assets/gallary/8.jpg";
 import img9 from "../../assets/gallary/9.jpg";
 import img11 from "../../assets/gallary/11.jpg";
-import img12 from  "../../assets/gallary/12.jpg";
-import img13 from  "../../assets/gallary/student3.jpg";
-import img14 from  "../../assets/gallary/student1.jpg";
-import img15 from  "../../assets/gallary/banner1.jpg";
-
+import img12 from "../../assets/gallary/12.jpg";
+import img13 from "../../assets/gallary/student3.jpg";
+import img14 from "../../assets/gallary/student1.jpg";
+import img15 from "../../assets/gallary/banner1.jpg";
 
 const GallerySection = styled.section`
   padding: 2rem 1rem;
@@ -53,19 +53,6 @@ const IntroDescription = styled.p`
   margin: 0 auto;
 `;
 
-const GalleryTitle = styled.h3`
-  font-size: 2.5rem;
-  color: #2C3E50;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-  line-height: 1.3;
-  text-align: center;
-
-  @media (max-width: 768px) {
-    font-size: 2rem;
-  }
-`;
-
 const GalleryGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -77,8 +64,7 @@ const GalleryGrid = styled.div`
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
-      gap: 5px;
-
+    gap: 5px;
   }
 `;
 
@@ -97,9 +83,7 @@ const GalleryImage = styled.img`
   object-fit: cover;
   transition: transform 0.3s ease;
 
-  ${GalleryImageWrapper}:hover & {
-    transform: scale(1.05);
-  }
+
 `;
 
 const ImageOverlay = styled.div`
@@ -115,9 +99,7 @@ const ImageOverlay = styled.div`
   opacity: 0;
   transition: opacity 0.3s ease;
 
-  ${GalleryImageWrapper}:hover & {
-    opacity: 1;
-  }
+
 `;
 
 const OverlayText = styled.span`
@@ -170,25 +152,160 @@ const NextButton = styled(LightboxButton)`
   right: 1rem;
 `;
 
-const galleryImages = [
-  { src: img1, alt: 'Hotel exterior at night' },
-  { src: img2, alt: 'Luxurious bedroom' },
-  { src: img3, alt: 'Swimming pool at night' },
-  { src: img4, alt: 'Garden gazebo' },
-  { src: img5, alt: 'Hotel pathway' },
-  { src: img7, alt: 'Hotel building at night' },
-  { src: img8, alt: 'Hotel building at night' },
-  { src: img9, alt: 'Hotel building at night' },
-  { src: img13, alt: 'Hotel building at night' },
-  { src: img11, alt: 'Hotel building at night' },
-  { src: img12, alt: 'Hotel building at night' },
-  { src: img13, alt: 'Hotel building at night' },
-  { src: img14, alt: 'Hotel building at night' },
+const DropdownContainer = styled.div`
+  position: relative;
+  width: 200px;
+  margin-bottom: 1rem;
+`;
 
-];
+const DropdownButton = styled.button`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 15px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  svg {
+    transition: transform 0.3s ease;
+  }
+
+  ${props => props.isOpen && `
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    
+    svg {
+      transform: rotate(180deg);
+    }
+  `}
+`;
+
+const DropdownList = styled.ul`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const DropdownItem = styled.li`
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  ${props => props.isSelected && `
+    background-color: #e0e0e0;
+    font-weight: bold;
+  `}
+`;
+
+const CustomDropdown = ({ options, value, onChange }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  const handleItemClick = (option) => {
+    onChange(option);
+    setIsOpen(false);
+  };
+
+  const handleClickOutside = useCallback((event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [handleClickOutside]);
+
+  return (
+    <DropdownContainer ref={dropdownRef}>
+      <DropdownButton onClick={toggleDropdown} isOpen={isOpen}>
+        {options.find(option => option.value === value)?.label || 'Select an option'}
+        <ChevronDown size={20} />
+      </DropdownButton>
+      {isOpen && (
+        <DropdownList>
+          {options.map((option) => (
+            <DropdownItem
+              key={option.value}
+              onClick={() => handleItemClick(option.value)}
+              isSelected={value === option.value}
+            >
+              {option.label}
+            </DropdownItem>
+          ))}
+        </DropdownList>
+      )}
+    </DropdownContainer>
+  );
+};
+
+// Organize images by event
+const eventImages = {
+  all: [
+    { src: img1, alt: 'Hotel exterior at night' },
+    { src: img2, alt: 'Luxurious bedroom' },
+    { src: img3, alt: 'Swimming pool at night' },
+    { src: img4, alt: 'Garden gazebo' },
+    { src: img5, alt: 'Hotel pathway' },
+    { src: img7, alt: 'Hotel building at night' },
+    { src: img8, alt: 'Hotel building at night' },
+    { src: img9, alt: 'Hotel building at night' },
+    { src: img11, alt: 'Hotel building at night' },
+    { src: img12, alt: 'Hotel building at night' },
+    { src: img13, alt: 'Hotel building at night' },
+    { src: img14, alt: 'Hotel building at night' },
+  ],
+  dashain: [
+    { src: img1, alt: 'dashain ceremony' },
+    { src: img3, alt: 'dashain reception' },
+    { src: img5, alt: 'dashain decorations' },
+  ],
+  study: [
+    { src: img2, alt: 'study room' },
+    { src: img4, alt: 'Networking event' },
+    { src: img7, alt: 'Presentation hall' },
+  ],
+  hinkin: [
+    { src: img8, alt: 'Swimming pool' },
+    { src: img9, alt: 'Spa area' },
+    { src: img11, alt: 'Fitness center' },
+  ],
+};
 
 const Gallery = () => {
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState('all');
 
   const openLightbox = useCallback((index) => {
     setLightboxIndex(index);
@@ -201,25 +318,42 @@ const Gallery = () => {
   const navigateLightbox = useCallback((direction) => {
     setLightboxIndex((prevIndex) => {
       const newIndex = prevIndex + direction;
-      if (newIndex < 0) return galleryImages.length - 1;
-      if (newIndex >= galleryImages.length) return 0;
+      if (newIndex < 0) return eventImages[selectedEvent].length - 1;
+      if (newIndex >= eventImages[selectedEvent].length) return 0;
       return newIndex;
     });
-  }, []);
+  }, [selectedEvent]);
+
+  const handleEventChange = (event) => {
+    setSelectedEvent(event);
+  };
+
+  const eventOptions = [
+    { value: 'all', label: 'All Events' },
+    { value: 'dashain', label: 'dashains' },
+    { value: 'study', label: 'studys' },
+    { value: 'hinkin', label: 'hinkin' },
+  ];
 
   return (
     <GallerySection>
       <GalleryContainer>
         <IntroSection>
-          <IntroTitle>  Our Gallery</IntroTitle>
+          <IntroTitle>Our Gallery</IntroTitle>
           <IntroDescription>
             Immerse yourself in the beauty and elegance of our hostel through our carefully curated gallery. 
-           
+            Select an event to view specific images.
           </IntroDescription>
         </IntroSection>
 
+        <CustomDropdown
+          options={eventOptions}
+          value={selectedEvent}
+          onChange={handleEventChange}
+        />
+
         <GalleryGrid>
-          {galleryImages.map((image, index) => (
+          {eventImages[selectedEvent].map((image, index) => (
             <GalleryImageWrapper 
               key={index}
               onClick={() => openLightbox(index)}
@@ -241,8 +375,8 @@ const Gallery = () => {
         {lightboxIndex !== null && (
           <LightboxOverlay onClick={closeLightbox}>
             <LightboxImage 
-              src={galleryImages[lightboxIndex].src} 
-              alt={galleryImages[lightboxIndex].alt} 
+              src={eventImages[selectedEvent][lightboxIndex].src} 
+              alt={eventImages[selectedEvent][lightboxIndex].alt} 
               onClick={(e) => e.stopPropagation()} 
             />
             <CloseButton onClick={closeLightbox} aria-label="Close lightbox">

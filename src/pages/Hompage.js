@@ -5,7 +5,6 @@ import PhotoGallery from '../component/hompage/PhotoGallery';
 import IntroductionSection from './../component/hompage/IntroductionSection';
 import HeroComponent from '../component/hompage/HeroComponent.js';
 import WhyJoinUsSection from '../component/hompage/WhyJoinUsSection.js';
-// import Video from '../component/hompage/Video.js';
 import Video from './../component/hompage/Video';
 
 
